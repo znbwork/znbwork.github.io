@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Back-End Developer Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="menu-toggle">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about" class="section">
+            <div class="container">
+                <h1>Web Back-End Developer</h1>
+                <h2>Professional Java Backend Engineer</h2>
+                <p>I am a seasoned Java backend engineer with <span id="yearsOfExperience"></span> years of experience in the IT industry. 
+                   Specializing in backend development for large and medium-scale projects, with expertise 
+                   in Java technologies including Spring, Hibernate, and Mybatis. Proficient in database 
+                   management with MySQL and Oracle, coupled with extensive experience in server management 
+                   and maintenance.</p>
+            </div>
+            <div class="tech-circles">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <div class="container">
+                <h2>Technical Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <h3>Core Technologies</h3>
+                        <ul>
+                            <li>Java (Spring Boot, Spring Cloud, Spring MVC)</li>
+                            <li>PHP, C#</li>
+                            <li>JUnit, Mockito, Groovy</li>
+                            <li>Maven, Gradle</li>
+                        </ul>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Databases & Servers</h3>
+                        <ul>
+                            <li>Oracle, MySQL, MongoDB</li>
+                            <li>Nginx, Apache, Tomcat</li>
+                            <li>Docker, Podman</li>
+                            <li>Linux, Windows, MacOS</li>
+                        </ul>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Web Technologies</h3>
+                        <ul>
+                            <li>HTML, CSS, JavaScript</li>
+                            <li>Shell Scripting</li>
+                            <li>Git Version Control</li>
+                            <li>CI/CD Pipeline Management</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <div class="container">
+                <h2>Professional Experience</h2>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <h3>Travel Service Development</h3>
+                        <p class="role">Java Developer (2019-2024)</p>
+                        <p class="project-description">
+                            Participated in the development of travel services.<br>
+                            Specifically, the development of bus booking, car rental and car sharing systems.<br>
+                            Responsible for backend service development and system optimization.
+                        </p>
+                        <div class="project-tags">
+                            <span>Java</span>
+                            <span>Spring Boot</span>
+                            <span>MySQL</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3>Dining Service Development</h3>
+                        <p class="role">Java Developer (2017-2019)</p>
+                        <p>Developed and maintained restaurant reservation systems with focus on 
+                           scalability and user experience.</p>
+                        <div class="project-tags">
+                            <span>Java</span>
+                            <span>Spring Cloud</span>
+                            <span>Oracle</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section">
+            <div class="container">
+                <h2>Education</h2>
+                <div class="education-info">
+                    <h3>Nihon University</h3>
+                    <p>Master of Engineering</p>
+                    <p>Department of Electrical and Electronic Engineering</p>
+                    <p>College of Industrial Technology</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2>Contact</h2>
+                <div class="contact-info">
+                    <p>邮箱：znbwork@outlook.com</p>
+                    <p>GitHub：<a href="https://github.com/znbwork">github.com/znbdev</a></p>
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© <span id="currentYear"></span> znbwork. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,562 @@
+:root {
+    --gradient-primary: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    --gradient-secondary: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --bg-light: #ffffff;
+    --bg-off-white: #f8fafc;
+    --accent-color: #4f46e5;
+    --accent-hover: #4338ca;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --card-border: rgba(0, 0, 0, 0.1);
+    --nav-bg: rgba(255, 255, 255, 0.9);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background: var(--bg-light);
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+/* 导航栏样式更新 */
+header {
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--card-border);
+    padding: 1rem 0;
+}
+
+.nav-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+}
+
+/* 汉堡菜单按钮样式 */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.bar {
+    height: 3px;
+    width: 100%;
+    background: var(--text-primary);
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* 响应式导航栏更新 */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+        position: relative;
+        z-index: 1001;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.98) !important;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 80px;
+        transition: 0.3s ease-in-out;
+        box-shadow: -2px 0 20px rgba(0, 0, 0, 0.15);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+    }
+
+    .nav-menu.active {
+        right: 0;
+    }
+
+    /* 汉堡菜单动画 */
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+    /* 添加遮罩层 */
+    .nav-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.75);
+        z-index: 999;
+        backdrop-filter: blur(8px);
+    }
+
+    .nav-overlay.active {
+        display: block;
+    }
+
+    nav ul {
+        gap: 2rem;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+
+    nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 1rem 0;
+        font-size: 1.2rem;
+        color: var(--text-primary) !important;
+        font-weight: 600;
+        padding: 1rem 2rem;
+        margin: 0.5rem 0;
+        border-radius: 8px;
+        background: transparent;
+        transition: all 0.3s ease;
+    }
+
+    nav ul li a::after {
+        display: none;
+    }
+
+    nav ul li a:hover {
+        color: var(--accent-color) !important;
+        background: rgba(79, 70, 229, 0.08);
+        transform: translateX(5px);
+    }
+
+    nav ul li {
+        width: 90%;
+        margin: 0 auto;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    nav ul li:last-child {
+        border-bottom: none;
+    }
+}
+
+nav {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    gap: 3rem;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    color: var(--accent-color) !important;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    padding: 0.5rem 0;
+    transition: all 0.3s ease;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--accent-color);
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* 响应式导航栏 */
+@media (max-width: 768px) {
+    nav ul {
+        gap: 1.5rem;
+        flex-direction: column;
+        padding: 1rem 0;
+    }
+
+    nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 0.5rem 0;
+    }
+}
+
+/* About 部分更新 */
+#about {
+    background: var(--bg-off-white);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+#about h1 {
+    font-size: 4em;
+    margin-bottom: 20px;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+}
+
+.tech-circles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--gradient-secondary);
+    filter: blur(60px);
+    opacity: 0.1;
+}
+
+.circle:nth-child(1) {
+    width: 300px;
+    height: 300px;
+    top: -150px;
+    right: -150px;
+}
+
+.circle:nth-child(2) {
+    width: 400px;
+    height: 400px;
+    bottom: -200px;
+    left: -200px;
+}
+
+/* 技能部分更新 */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.skill-item {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border);
+    transition: transform 0.3s;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.skill-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(129, 140, 248, 0.2);
+    border-color: var(--accent-color);
+}
+
+.skill-item h3 {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.skill-item ul li {
+    color: var(--text-secondary);
+    margin: 10px 0;
+    list-style: none;
+    position: relative;
+    padding-left: 20px;
+}
+
+.skill-item ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+}
+
+/* 项目卡片更新 */
+.project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(129, 140, 248, 0.2);
+    border-color: var(--accent-color);
+}
+
+.project-tags span {
+    background: rgba(129, 140, 248, 0.15);
+    color: var(--accent-color);
+    border: 1px solid rgba(129, 140, 248, 0.3);
+}
+
+/* 响应式设计优化 */
+@media (max-width: 768px) {
+    #about h1 {
+        font-size: 2.5em;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 页脚样式更新 */
+footer {
+    text-align: center;
+    padding: 2rem 0;
+    background: var(--bg-off-white);
+    border-top: 1px solid var(--card-border);
+}
+
+footer p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+/* Experience 部分更新 */
+#experience {
+    background: var(--bg-off-white);
+    position: relative;
+    overflow: hidden;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.project-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 20px;
+    position: relative;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+/* 添加科技感背景效果 */
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        transparent 0%,
+        rgba(79, 70, 229, 0.03) 50%,
+        transparent 100%
+    );
+    z-index: 0;
+}
+
+.project-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.project-card h3 {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+/* 添加标题装饰线 */
+.project-card h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--gradient-primary);
+    transition: width 0.3s ease;
+}
+
+.project-card:hover h3::after {
+    width: 100%;
+}
+
+.project-card .role {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+    border-left: 2px solid var(--accent-color);
+}
+
+.project-card p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: auto;
+}
+
+.project-tags span {
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    background: rgba(79, 70, 229, 0.08);
+    color: var(--accent-color);
+    border: 1px solid rgba(79, 70, 229, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* 悬停效果 */
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(79, 70, 229, 0.1);
+    border-color: var(--accent-color);
+}
+
+.project-tags span:hover {
+    background: var(--accent-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* 添加装饰元素 */
+.project-card::after {
+    content: '';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 30px;
+    height: 30px;
+    border-top: 2px solid var(--accent-color);
+    border-right: 2px solid var(--accent-color);
+    opacity: 0.3;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .project-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .project-card {
+        padding: 1.5rem;
+    }
+}
+
+.project-description {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+}
+
+.project-description p:last-child {
+    margin-bottom: 1.5rem;
+}
+
+/* 修改 section 的间距 */
+.section {
+    padding: 100px 0 120px; /* 增加底部内边距 */
+    margin-bottom: 40px;    /* 添加底部外边距 */
+    position: relative;
+}
+
+/* 最后一个 section 不需要底部外边距 */
+.section:last-child {
+    margin-bottom: 0;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .section {
+        padding: 80px 0 100px; /* 移动端稍微减小一点内边距 */
+        margin-bottom: 30px;   /* 移动端稍微减小一点外边距 */
+    }
+} 
