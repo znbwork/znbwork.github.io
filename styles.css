@@ -246,25 +246,6 @@ nav ul li a:hover::after {
     }
 }
 
-/* About 部分更新 */
-#about {
-    background: var(--bg-off-white);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-}
-
-#about h1 {
-    font-size: 4em;
-    margin-bottom: 20px;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: none;
-}
-
 .tech-circles {
     position: absolute;
     width: 100%;
@@ -297,71 +278,6 @@ nav ul li a:hover::after {
     left: -200px;
 }
 
-/* 技能部分更新 */
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.skill-item {
-    background: var(--card-bg);
-    padding: 30px;
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--card-border);
-    transition: transform 0.3s;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-}
-
-.skill-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(129, 140, 248, 0.2);
-    border-color: var(--accent-color);
-}
-
-.skill-item h3 {
-    color: var(--accent-color);
-    margin-bottom: 20px;
-    font-size: 1.5em;
-}
-
-.skill-item ul li {
-    color: var(--text-secondary);
-    margin: 10px 0;
-    list-style: none;
-    position: relative;
-    padding-left: 20px;
-}
-
-.skill-item ul li::before {
-    content: '•';
-    position: absolute;
-    left: 0;
-    color: var(--accent-color);
-}
-
-/* 项目卡片更新 */
-.project-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s;
-}
-
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(129, 140, 248, 0.2);
-    border-color: var(--accent-color);
-}
-
-.project-tags span {
-    background: rgba(129, 140, 248, 0.15);
-    color: var(--accent-color);
-    border: 1px solid rgba(129, 140, 248, 0.3);
-}
-
 /* 响应式设计优化 */
 @media (max-width: 768px) {
     #about h1 {
@@ -381,7 +297,6 @@ nav ul li a:hover::after {
 footer {
     text-align: center;
     padding: 2rem 0;
-    background: var(--bg-off-white);
     border-top: 1px solid var(--card-border);
 }
 
@@ -389,13 +304,6 @@ footer p {
     color: var(--text-secondary);
     font-size: 0.9rem;
     letter-spacing: 0.5px;
-}
-
-/* Experience 部分更新 */
-#experience {
-    background: var(--bg-off-white);
-    position: relative;
-    overflow: hidden;
 }
 
 .project-grid {
@@ -559,4 +467,108 @@ footer p {
         padding: 80px 0 100px; /* 移动端稍微减小一点内边距 */
         margin-bottom: 30px;   /* 移动端稍微减小一点外边距 */
     }
-} 
+}
+
+/* about 部分更新 */
+#about {
+    background: var(--bg-off-white);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+#about h1 {
+    font-size: 4em;
+    margin-bottom: 20px;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+}
+
+/* skills 部分更新 */
+#skills {
+    background: var(--bg-off-white);
+    position: relative;
+    overflow: hidden;
+}
+
+/* experience 部分更新 */
+#experience {
+    position: relative;
+    overflow: hidden;
+}
+
+/* contact 部分更新 */
+#contact {
+    background: var(--bg-off-white);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 技能部分更新 */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.skill-item {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border);
+    transition: transform 0.3s;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.skill-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(129, 140, 248, 0.2);
+    border-color: var(--accent-color);
+}
+
+.skill-item h3 {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.skill-item ul li {
+    color: var(--text-secondary);
+    margin: 10px 0;
+    list-style: none;
+    position: relative;
+    padding-left: 20px;
+}
+
+.skill-item ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+}
+
+/* 项目卡片更新 */
+.project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(129, 140, 248, 0.2);
+    border-color: var(--accent-color);
+}
+
+.project-tags span {
+    background: rgba(129, 140, 248, 0.15);
+    color: var(--accent-color);
+    border: 1px solid rgba(129, 140, 248, 0.3);
+}
