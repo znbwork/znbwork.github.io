@@ -8,301 +8,313 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="nav-container">
-                <div class="menu-toggle">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
+<header>
+    <nav>
+        <div class="nav-container">
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section id="about" class="section">
+        <div class="container">
+            <h1>Full-stack Web Developer</h1>
+            <h2>Professional Java Engineer</h2>
+            <p>
+                I am a seasoned web engineer with <span id="yearsOfExperience"></span> years of experience in the IT
+                industry. Specializing in full-stack development for large and medium-sized projects, I leverage Java
+                and its core frameworks like Spring Boot and Spring Cloud to build scalable and robust backend
+                applications.
+            </p>
+
+            <p>
+                My proficiency extends to diverse database management systems including Oracle, MySQL, and MongoDB,
+                ensuring efficient data handling. I'm also adept at crafting engaging user interfaces with frontend
+                technologies like HTML, CSS, and JavaScript, and possess experience in mobile application development.
+            </p>
+
+            <p>
+                My strong command of server management and maintenance across Linux, Windows, and macOS environments,
+                complemented by robust containerization expertise with Docker, ensures seamless deployment. Furthermore,
+                my skills in Shell Scripting, Git for version control, and CI/CD Pipeline Management guarantee
+                streamlined development workflows from end to end.
+            </p>
+        </div>
+        <div class="tech-circles">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+    </section>
+
+    <section id="education" class="section">
+        <div class="container">
+            <h2>Education</h2>
+            <div class="education-info">
+                <h3>Nihon University</h3>
+                <p>Master of Engineering</p>
+                <p>Department of Electrical and Electronic Engineering</p>
+                <p>College of Industrial Technology</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2>Technical Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <h3>Programming Languages</h3>
+                    <ul>
+                        <li>Java (Spring Boot, Spring Cloud, Spring MVC, Hibernate, MyBatis, JPA, Struts)</li>
+                        <li>C#, PHP, COBOL</li>
+                        <li>Shell, Groovy</li>
+                        <li>Node.js, React.js, Vue.js</li>
+                    </ul>
                 </div>
-                <ul class="nav-menu">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-
-    <main>
-        <section id="about" class="section">
-            <div class="container">
-                <h1>Full-stack Web Developer</h1>
-                <h2>Professional Java Engineer</h2>
-                <p>
-                I am a seasoned web engineer with <span id="yearsOfExperience"></span> years of experience in the IT industry. 
-                Specializing in full-stack development for large and medium-sized projects, I leverage Java and its core frameworks like Spring Boot and Spring Cloud to build scalable and robust backend applications. 
-                My proficiency extends to diverse database management systems including Oracle, MySQL, and MongoDB, ensuring efficient data handling. 
-                I'm also adept at crafting engaging user interfaces with frontend technologies like HTML, CSS, and JavaScript, and possess experience in mobile application development.
-                My strong command of server management and maintenance across Linux, Windows, and macOS environments, complemented by robust containerization expertise with Docker, ensures seamless deployment. 
-                Furthermore, my skills in Shell Scripting, Git for version control, and CI/CD Pipeline Management guarantee streamlined development workflows from end to end.
-                </p>
-            </div>
-            <div class="tech-circles">
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-            </div>
-        </section>
-
-        <section id="education" class="section">
-            <div class="container">
-                <h2>Education</h2>
-                <div class="education-info">
-                    <h3>Nihon University</h3>
-                    <p>Master of Engineering</p>
-                    <p>Department of Electrical and Electronic Engineering</p>
-                    <p>College of Industrial Technology</p>
+                <div class="skill-item">
+                    <h3>Testing & Build Tools</h3>
+                    <ul>
+                        <li>JUnit, Mockito</li>
+                        <li>Selenium</li>
+                        <li>Maven, Gradle</li>
+                    </ul>
                 </div>
-            </div>
-        </section>
-
-        <section id="skills" class="section">
-            <div class="container">
-                <h2>Technical Expertise</h2>
-                <div class="skills-grid">
-                    <div class="skill-item">
-                        <h3>Programming Languages</h3>
-                        <ul>
-                            <li>Java (Spring Boot, Spring Cloud, Spring MVC, Hibernate, MyBatis, JPA, Struts)</li>
-                            <li>C#, PHP, COBOL</li>
-                            <li>Shell, Groovy</li>
-                            <li>Node.js, React.js, Vue.js</li>
-                        </ul>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Testing & Build Tools</h3>
-                        <ul>
-                            <li>JUnit, Mockito</li>
-                            <li>Selenium</li>
-                            <li>Maven, Gradle</li>
-                        </ul>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Databases & Storage</h3>
-                        <ul>
-                            <li>Oracle</li>
-                            <li>MySQL</li>
-                            <li>DB2</li>
-                            <li>MongoDB, Redis, H2</li>
-                        </ul>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Web & Frontend Technologies</h3>
-                        <ul>
-                            <li>HTML</li>
-                            <li>JavaScript</li>
-                            <li>CSS</li>
-                        </ul>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Servers & Deployment</h3>
-                        <ul>
-                            <li>Nginx, Apache, Tomcat</li>
-                            <li>Linux, Windows, macOS</li>
-                        </ul>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Containerization & DevOps</h3>
-                        <ul>
-                            <li>Docker, Podman</li>
-                            <li>CI/CD Pipeline Management (Jenkins)</li>
-                        </ul>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Version Control</h3>
-                        <ul>
-                            <li>Git</li>
-                            <li>Github</li>
-                            <li>Bitbucket</li>
-                            <li>TortoiseSVN</li>
-                        </ul>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Cloud Platforms</h3>
-                        <ul>
-                            <li>AWS</li>
-                            <li>Aliyun</li>
-                            <li>Oracle Cloud</li>
-                        </ul>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Collaboration Tools</h3>
-                        <ul>
-                            <li>Confluence</li>
-                            <li>JIRA</li>
-                            <li>Redmine</li>
-                        </ul>
-                    </div>
+                <div class="skill-item">
+                    <h3>Databases & Storage</h3>
+                    <ul>
+                        <li>Oracle</li>
+                        <li>MySQL</li>
+                        <li>DB2</li>
+                        <li>MongoDB, Redis, H2</li>
+                    </ul>
                 </div>
-
-            </div>
-        </section>
-
-        <section id="experience" class="section">
-            <div class="container">
-                <h2>Professional Experience</h2>
-                <div class="project-grid">
-                    <div class="project-card">
-                        <h3>Single Sign-on certificate system Development</h3>
-                        <p class="role">Java Developer (2025-2025)</p>
-                        <p class="project-description">
-                            Unify authentication for multiple services into one unified authentication.
-                        </p>
-                        <div class="project-tags">
-                            <span>Node.js</span>
-                            <span>Next.js</span>
-                            <span>Mysql, DB2</span>
-                            <span>JWT</span>
-                            <span>AWS</span>
-                            <span>Github</span>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <h3>Trusco Orange Book Development</h3>
-                        <p class="role">Java Developer (2024-2025)</p>
-                        <p class="project-description">
-                            Migration-Development for the BtoB EC site.<br>
-                            Specifically, responsible for the development of all backend API services.<br>
-                            Also assisted in modifying some front-end pages.
-                        </p>
-                        <div class="project-tags">
-                            <span>Java</span>
-                            <span>Oracle</span>
-                            <span>TortoiseSVN</span>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <h3>Travel Service Development</h3>
-                        <p class="role">Java Developer (2019-2024)</p>
-                        <p class="project-description">
-                            Participated in the development of travel services.<br>
-                            Specifically, the development of bus booking, car rental and car sharing systems.<br>
-                            Responsible for backend service development and system optimization.
-                        </p>
-                        <div class="project-tags">
-                            <span>Java</span>
-                            <span>Spring</span>
-                            <span>Oracle, MySQL, MongoDB</span>
-                            <span>Docker, Podman</span>
-                            <span>Jenkins</span>
-                            <span>Confluence, JIRA, Bitbucket</span>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <h3>Dining Service Development</h3>
-                        <p class="role">Java Developer (2017-2019)</p>
-                        <p>Developed and maintained restaurant reservation systems with focus on 
-                           scalability and user experience.</p>
-                        <div class="project-tags">
-                            <span>Java</span>
-                            <span>Apache Struts</span>
-                            <span>Oracle</span>
-                            <span>Docker</span>
-                            <span>Jenkins</span>
-                            <span>Confluence, JIRA, Bitbucket</span>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <h3>Taiwan Market System Maintenance and Development</h3>
-                        <p class="role">Java Developer (2014-2017)</p>
-                        <p>Developed and maintained the Taiwan Marketplace system,
-                            focusing on day-to-day operations and maintenance,
-                            as well as minor revisions to improve the user experience.</p>
-                        <div class="project-tags">
-                            <span>Java</span>
-                            <span>Apache Struts</span>
-                            <span>Oracle</span>
-                            <span>Shell</span>
-                            <span>Jenkins</span>
-                            <span>Confluence, JIRA, Bitbucket</span>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <h3>Mitsui Sumitomo Mansion Management System</h3>
-                        <p class="role">Java Developer (2013-2014)</p>
-                        <p class="project-description">
-                            Developed a mansion management system for a mansion management company.
-                        </p>
-                        <div class="project-tags">
-                            <span>Java</span>
-                            <span>Rakuraku framework</span>
-                            <span>Oracle</span>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <h3>University Attendance Management System Development (Android)</h3>
-                        <p class="role">Android Developer (2012-2013)</p>
-                        <p class="project-description">
-                            Developed an attendance management system for universities using Android technology.<br>
-                            The system allowed students to check in using Felica cards via NFC.<br>
-                            Also developed an office system for attendance management.
-                        </p>
-                        <div class="project-tags">
-                            <span>Android</span>
-                            <span>NFC</span>
-                            <span>Felica</span>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <h3>Securities Business System Maintenance</h3>
-                        <p class="role">Java Developer (2011-2012)</p>
-                        <p class="project-description">
-                            Responsible for the daily maintenance of Securities' business system.
-                         </p>
-                        <div class="project-tags">
-                            <span>Java</span>
-                            <span>Spring</span>
-                            <span>Oracle</span>
-                            <span>MySQL</span>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <h3>Development, Operation, and Maintenance of Host System for Large Insurance Companies</h3>
-                        <p class="role">Java Developer (2010-2011)</p>
-                        <p class="project-description">
-                            Managed the development, operation, and maintenance of host systems for large insurance companies.
-                        </p>
-                        <div class="project-tags">
-                            <span>COBOL</span>
-                            <span>MSP/OSIV</span>
-                            <span>DB2</span>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <h3>Logistics Management System Development</h3>
-                        <p class="role">Java Developer (2008-2009)</p>
-                        <p class="project-description">
-                            Developed an integrated logistics management system for a client company's warehouse.
-                        </p>
-                        <div class="project-tags">
-                            <span>Java</span>
-                            <span>Oracle</span>
-                        </div>
-                    </div>
+                <div class="skill-item">
+                    <h3>Web & Frontend Technologies</h3>
+                    <ul>
+                        <li>HTML</li>
+                        <li>JavaScript</li>
+                        <li>CSS</li>
+                    </ul>
+                </div>
+                <div class="skill-item">
+                    <h3>Servers & Deployment</h3>
+                    <ul>
+                        <li>Nginx, Apache, Tomcat</li>
+                        <li>Linux, Windows, macOS</li>
+                    </ul>
+                </div>
+                <div class="skill-item">
+                    <h3>Containerization & DevOps</h3>
+                    <ul>
+                        <li>Docker, Podman</li>
+                        <li>CI/CD Pipeline Management (Jenkins)</li>
+                    </ul>
+                </div>
+                <div class="skill-item">
+                    <h3>Version Control</h3>
+                    <ul>
+                        <li>Git</li>
+                        <li>Github</li>
+                        <li>Bitbucket</li>
+                        <li>TortoiseSVN</li>
+                    </ul>
+                </div>
+                <div class="skill-item">
+                    <h3>Cloud Platforms</h3>
+                    <ul>
+                        <li>AWS</li>
+                        <li>Aliyun</li>
+                        <li>Oracle Cloud</li>
+                    </ul>
+                </div>
+                <div class="skill-item">
+                    <h3>Collaboration Tools</h3>
+                    <ul>
+                        <li>Confluence</li>
+                        <li>JIRA</li>
+                        <li>Redmine</li>
+                    </ul>
                 </div>
             </div>
-        </section>
 
-        <section id="contact" class="section">
-            <div class="container">
-                <h2>Contact</h2>
-                <div class="contact-info">
-                    <p>邮箱：znbwork@outlook.com</p>
-                    <p>GitHub：<a href="https://github.com/znbwork">github.com/znbwork</a></p>
-                    
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <div class="container">
+            <h2>Professional Experience</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>Single Sign-on certificate system Development</h3>
+                    <p class="role">Java Developer (2025-2025)</p>
+                    <p class="project-description">
+                        Unify authentication for multiple services into one unified authentication.
+                    </p>
+                    <div class="project-tags">
+                        <span>Node.js</span>
+                        <span>Next.js</span>
+                        <span>Mysql, DB2</span>
+                        <span>JWT</span>
+                        <span>AWS</span>
+                        <span>Github</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Trusco Orange Book Development</h3>
+                    <p class="role">Java Developer (2024-2025)</p>
+                    <p class="project-description">
+                        Migration-Development for the BtoB EC site.<br>
+                        Specifically, responsible for the development of all backend API services.<br>
+                        Also assisted in modifying some front-end pages.
+                    </p>
+                    <div class="project-tags">
+                        <span>Java</span>
+                        <span>Oracle</span>
+                        <span>TortoiseSVN</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Travel Service Development</h3>
+                    <p class="role">Java Developer (2019-2024)</p>
+                    <p class="project-description">
+                        Participated in the development of travel services.<br>
+                        Specifically, the development of bus booking, car rental and car sharing systems.<br>
+                        Responsible for backend service development and system optimization.
+                    </p>
+                    <div class="project-tags">
+                        <span>Java</span>
+                        <span>Spring</span>
+                        <span>Oracle, MySQL, MongoDB</span>
+                        <span>Docker, Podman</span>
+                        <span>Jenkins</span>
+                        <span>Confluence, JIRA, Bitbucket</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Dining Service Development</h3>
+                    <p class="role">Java Developer (2017-2019)</p>
+                    <p>Developed and maintained restaurant reservation systems with focus on
+                        scalability and user experience.</p>
+                    <div class="project-tags">
+                        <span>Java</span>
+                        <span>Apache Struts</span>
+                        <span>Oracle</span>
+                        <span>Docker</span>
+                        <span>Jenkins</span>
+                        <span>Confluence, JIRA, Bitbucket</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Taiwan Market System Maintenance and Development</h3>
+                    <p class="role">Java Developer (2014-2017)</p>
+                    <p>Developed and maintained the Taiwan Marketplace system,
+                        focusing on day-to-day operations and maintenance,
+                        as well as minor revisions to improve the user experience.</p>
+                    <div class="project-tags">
+                        <span>Java</span>
+                        <span>Apache Struts</span>
+                        <span>Oracle</span>
+                        <span>Shell</span>
+                        <span>Jenkins</span>
+                        <span>Confluence, JIRA, Bitbucket</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Mitsui Sumitomo Mansion Management System</h3>
+                    <p class="role">Java Developer (2013-2014)</p>
+                    <p class="project-description">
+                        Developed a mansion management system for a mansion management company.
+                    </p>
+                    <div class="project-tags">
+                        <span>Java</span>
+                        <span>Rakuraku framework</span>
+                        <span>Oracle</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>University Attendance Management System Development (Android)</h3>
+                    <p class="role">Android Developer (2012-2013)</p>
+                    <p class="project-description">
+                        Developed an attendance management system for universities using Android technology.<br>
+                        The system allowed students to check in using Felica cards via NFC.<br>
+                        Also developed an office system for attendance management.
+                    </p>
+                    <div class="project-tags">
+                        <span>Android</span>
+                        <span>NFC</span>
+                        <span>Felica</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Securities Business System Maintenance</h3>
+                    <p class="role">Java Developer (2011-2012)</p>
+                    <p class="project-description">
+                        Responsible for the daily maintenance of Securities' business system.
+                    </p>
+                    <div class="project-tags">
+                        <span>Java</span>
+                        <span>Spring</span>
+                        <span>Oracle</span>
+                        <span>MySQL</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Development, Operation, and Maintenance of Host System for Large Insurance Companies</h3>
+                    <p class="role">Java Developer (2010-2011)</p>
+                    <p class="project-description">
+                        Managed the development, operation, and maintenance of host systems for large insurance
+                        companies.
+                    </p>
+                    <div class="project-tags">
+                        <span>COBOL</span>
+                        <span>MSP/OSIV</span>
+                        <span>DB2</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Logistics Management System Development</h3>
+                    <p class="role">Java Developer (2008-2009)</p>
+                    <p class="project-description">
+                        Developed an integrated logistics management system for a client company's warehouse.
+                    </p>
+                    <div class="project-tags">
+                        <span>Java</span>
+                        <span>Oracle</span>
+                    </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <footer>
-        <p>© <span id="currentYear"></span> znbwork. All rights reserved.</p>
-    </footer>
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Contact</h2>
+            <div class="contact-info">
+                <p>邮箱：znbwork@outlook.com</p>
+                <p>GitHub：<a href="https://github.com/znbwork">github.com/znbwork</a></p>
 
-    <script src="script.js"></script>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>© <span id="currentYear"></span> znbwork. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
