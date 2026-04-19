@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>简历编辑器</title>
+    <title data-t="ui_title">简历编辑器</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; padding: 20px; }
@@ -36,7 +36,7 @@
 </head>
 <body>
     <div class="header">
-        <h1>简历内容编辑</h1>
+        <h1 data-t="ui_title">简历内容编辑</h1>
         <div class="lang-bar">
             <button class="lang-btn" data-lang="zh">中文</button>
             <button class="lang-btn active" data-lang="ja">日本語</button>
@@ -45,40 +45,40 @@
     </div>
 
     <div class="tabs">
-        <button class="tab-btn active" data-tab="basic">基本信息</button>
-        <button class="tab-btn" data-tab="strengths">强项</button>
-        <button class="tab-btn" data-tab="education">学历</button>
-        <button class="tab-btn" data-tab="company">公司经历</button>
-        <button class="tab-btn" data-tab="projects">项目经验</button>
-        <button class="tab-btn" data-tab="skills">技术技能</button>
-        <button class="tab-btn" data-tab="pr">自我PR</button>
+        <button class="tab-btn active" data-tab="basic" data-t="tab_basic">基本信息</button>
+        <button class="tab-btn" data-tab="strengths" data-t="tab_strengths">强项</button>
+        <button class="tab-btn" data-tab="education" data-t="tab_education">学历</button>
+        <button class="tab-btn" data-tab="company" data-t="tab_company">公司经历</button>
+        <button class="tab-btn" data-tab="projects" data-t="tab_projects">项目经验</button>
+        <button class="tab-btn" data-tab="skills" data-t="tab_skills">技术技能</button>
+        <button class="tab-btn" data-tab="pr" data-t="tab_pr">自我PR</button>
     </div>
 
     <div class="editor">
         <!-- 基本信息 -->
         <div class="editor-section active" data-section="basic">
             <div class="form-group">
-                <label>姓名</label>
+                <label data-t="lbl_name">Name</label>
                 <input type="text" data-field="name">
             </div>
             <div class="form-group">
-                <label>职位标题</label>
+                <label data-t="lbl_title">Job Title</label>
                 <input type="text" data-field="title">
             </div>
             <div class="form-group">
-                <label>个人简介</label>
+                <label data-t="lbl_summary">Summary</label>
                 <textarea data-field="summary"></textarea>
             </div>
             <div class="form-group">
-                <label>经历概要标题</label>
+                <label data-t="lbl_summary_title">Summary Title</label>
                 <input type="text" data-field="summary_title">
             </div>
             <div class="form-group">
-                <label>经历概要正文</label>
+                <label data-t="lbl_summary_text">Summary Text</label>
                 <textarea data-field="summary_text"></textarea>
             </div>
             <div class="form-group">
-                <label>邮件标签</label>
+                <label data-t="lbl_email">Email</label>
                 <input type="text" data-field="email">
             </div>
         </div>
@@ -86,46 +86,46 @@
         <!-- 强项 -->
         <div class="editor-section" data-section="strengths">
             <div class="form-group">
-                <label>强项标题</label>
+                <label data-t="lbl_strengths_title">Strengths Title</label>
                 <input type="text" data-field="strengths_title">
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label>强项1标题</label>
+                    <label>Strength 1 Title</label>
                     <input type="text" data-field="s1_title">
                 </div>
                 <div class="form-group">
-                    <label>强项1描述</label>
+                    <label>Strength 1 Desc</label>
                     <input type="text" data-field="s1_desc">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label>强项2标题</label>
+                    <label>Strength 2 Title</label>
                     <input type="text" data-field="s2_title">
                 </div>
                 <div class="form-group">
-                    <label>强项2描述</label>
+                    <label>Strength 2 Desc</label>
                     <input type="text" data-field="s2_desc">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label>强项3标题</label>
+                    <label>Strength 3 Title</label>
                     <input type="text" data-field="s3_title">
                 </div>
                 <div class="form-group">
-                    <label>强项3描述</label>
+                    <label>Strength 3 Desc</label>
                     <input type="text" data-field="s3_desc">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label>强项4标题</label>
+                    <label>Strength 4 Title</label>
                     <input type="text" data-field="s4_title">
                 </div>
                 <div class="form-group">
-                    <label>强项4描述</label>
+                    <label>Strength 4 Desc</label>
                     <input type="text" data-field="s4_desc">
                 </div>
             </div>
@@ -134,21 +134,21 @@
         <!-- 学历 -->
         <div class="editor-section" data-section="education">
             <div class="form-group">
-                <label>学历标题</label>
+                <label data-t="lbl_edu_title">Education</label>
                 <input type="text" data-field="edu_title">
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label>时间</label>
+                    <label data-t="lbl_period">Period</label>
                     <input type="text" data-field="period">
                 </div>
                 <div class="form-group">
-                    <label>学校</label>
+                    <label data-t="lbl_school_label">School</label>
                     <input type="text" data-field="school_label">
                 </div>
             </div>
             <div class="form-group">
-                <label>学校名称</label>
+                <label data-t="lbl_school">School Name</label>
                 <input type="text" data-field="school">
             </div>
         </div>
@@ -156,60 +156,60 @@
         <!-- 公司经历 -->
         <div class="editor-section" data-section="company">
             <div class="form-group">
-                <label>公司历史标题</label>
+                <label data-t="lbl_company_title">Company History</label>
                 <input type="text" data-field="company_title">
             </div>
             <div class="form-group">
-                <label>公司列标题</label>
+                <label data-t="lbl_company_name">Company Name</label>
                 <input type="text" data-field="company_name">
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label>公司1名称</label>
+                    <label>Company 1</label>
                     <input type="text" data-field="c1">
                 </div>
                 <div class="form-group">
-                    <label>公司1时间</label>
+                    <label>Period 1</label>
                     <input type="text" data-field="c1_period">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label>公司2名称</label>
+                    <label>Company 2</label>
                     <input type="text" data-field="c2">
                 </div>
                 <div class="form-group">
-                    <label>公司2时间</label>
+                    <label>Period 2</label>
                     <input type="text" data-field="c2_period">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label>公司3名称</label>
+                    <label>Company 3</label>
                     <input type="text" data-field="c3">
                 </div>
                 <div class="form-group">
-                    <label>公司3时间</label>
+                    <label>Period 3</label>
                     <input type="text" data-field="c3_period">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label>公司4名称</label>
+                    <label>Company 4</label>
                     <input type="text" data-field="c4">
                 </div>
                 <div class="form-group">
-                    <label>公司4时间</label>
+                    <label>Period 4</label>
                     <input type="text" data-field="c4_period">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label>公司5名称</label>
+                    <label>Company 5</label>
                     <input type="text" data-field="c5">
                 </div>
                 <div class="form-group">
-                    <label>公司5时间</label>
+                    <label>Period 5</label>
                     <input type="text" data-field="c5_period">
                 </div>
             </div>
@@ -218,83 +218,83 @@
         <!-- 项目经验 -->
         <div class="editor-section" data-section="projects">
             <div class="form-group">
-                <label>项目经验标题</label>
+                <label data-t="lbl_proj_title">Projects</label>
                 <input type="text" data-field="proj_title">
             </div>
 
-            <div class="section-header">项目1</div>
+            <div class="section-header">Project 1</div>
             <div class="form-group">
-                <label>项目名称</label>
+                <label>Project Name</label>
                 <input type="text" data-field="p1_title">
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label>角色</label>
+                    <label>Role</label>
                     <input type="text" data-field="p1_role">
                 </div>
                 <div class="form-group">
-                    <label>时间</label>
+                    <label>Period</label>
                     <input type="text" data-field="p1_period">
                 </div>
             </div>
             <div class="form-group">
-                <label>概述</label>
+                <label>Overview</label>
                 <textarea data-field="p1_overview"></textarea>
             </div>
             <div class="form-group">
-                <label>职责标题</label>
+                <label>Duties Title</label>
                 <input type="text" data-field="p1_duties_title">
             </div>
             <div class="form-group">
-                <label>职责1</label>
+                <label>Duty 1</label>
                 <input type="text" data-field="p1_d1">
             </div>
             <div class="form-group">
-                <label>职责2</label>
+                <label>Duty 2</label>
                 <input type="text" data-field="p1_d2">
             </div>
             <div class="form-group">
-                <label>职责3</label>
+                <label>Duty 3</label>
                 <input type="text" data-field="p1_d3">
             </div>
             <div class="form-group">
-                <label>职责4</label>
+                <label>Duty 4</label>
                 <input type="text" data-field="p1_d4">
             </div>
 
-            <div class="section-header">项目2</div>
+            <div class="section-header">Project 2</div>
             <div class="form-group">
-                <label>项目名称</label>
+                <label>Project Name</label>
                 <input type="text" data-field="p2_title">
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label>角色</label>
+                    <label>Role</label>
                     <input type="text" data-field="p2_role">
                 </div>
                 <div class="form-group">
-                    <label>时间</label>
+                    <label>Period</label>
                     <input type="text" data-field="p2_period">
                 </div>
             </div>
             <div class="form-group">
-                <label>概述</label>
+                <label>Overview</label>
                 <textarea data-field="p2_overview"></textarea>
             </div>
             <div class="form-group">
-                <label>职责1</label>
+                <label>Duty 1</label>
                 <input type="text" data-field="p2_d1">
             </div>
             <div class="form-group">
-                <label>职责2</label>
+                <label>Duty 2</label>
                 <input type="text" data-field="p2_d2">
             </div>
             <div class="form-group">
-                <label>职责3</label>
+                <label>Duty 3</label>
                 <input type="text" data-field="p2_d3">
             </div>
             <div class="form-group">
-                <label>职责4</label>
+                <label>Duty 4</label>
                 <input type="text" data-field="p2_d4">
             </div>
         </div>
@@ -302,35 +302,35 @@
         <!-- 技术技能 -->
         <div class="editor-section" data-section="skills">
             <div class="form-group">
-                <label>技术技能标题</label>
+                <label data-t="lbl_skill_title">Skills</label>
                 <input type="text" data-field="skill_title">
             </div>
             <div class="form-group">
-                <label>编程语言</label>
+                <label data-t="lbl_skill_lang">Languages</label>
                 <input type="text" data-field="skill_lang">
             </div>
             <div class="form-group">
-                <label>操作系统</label>
+                <label data-t="lbl_skill_os">OS</label>
                 <input type="text" data-field="skill_os">
             </div>
             <div class="form-group">
-                <label>数据库</label>
+                <label data-t="lbl_skill_db">Databases</label>
                 <input type="text" data-field="skill_db">
             </div>
             <div class="form-group">
-                <label>框架</label>
+                <label data-t="lbl_skill_fw">Frameworks</label>
                 <input type="text" data-field="skill_fw">
             </div>
             <div class="form-group">
-                <label>云服务</label>
+                <label data-t="lbl_skill_cloud">Cloud</label>
                 <input type="text" data-field="skill_cloud">
             </div>
             <div class="form-group">
-                <label>开发工具</label>
+                <label data-t="lbl_skill_tools">Tools</label>
                 <input type="text" data-field="skill_tools">
             </div>
             <div class="form-group">
-                <label>技术环境标签</label>
+                <label data-t="lbl_tech_env">Tech Env</label>
                 <input type="text" data-field="tech_env">
             </div>
         </div>
@@ -338,120 +338,158 @@
         <!-- 自我PR -->
         <div class="editor-section" data-section="pr">
             <div class="form-group">
-                <label>自我PR标题</label>
+                <label data-t="lbl_pr_title">Self PR</label>
                 <input type="text" data-field="pr_title">
             </div>
             <div class="form-group">
-                <label>PR内容1</label>
+                <label>PR 1</label>
                 <textarea data-field="pr1"></textarea>
             </div>
             <div class="form-group">
-                <label>PR内容2</label>
+                <label>PR 2</label>
                 <textarea data-field="pr2"></textarea>
             </div>
             <div class="form-group">
-                <label>PR内容3</label>
+                <label>PR 3</label>
                 <textarea data-field="pr3"></textarea>
             </div>
             <div class="form-group">
-                <label>PR内容4</label>
+                <label>PR 4</label>
                 <textarea data-field="pr4"></textarea>
             </div>
         </div>
 
         <div class="controls">
-            <button id="saveBtn" class="btn btn-primary">保存更改</button>
-            <button id="previewBtn" class="btn btn-success">预览</button>
+            <button id="saveBtn" class="btn btn-primary" data-t="btn_save">保存更改</button>
+            <button id="previewBtn" class="btn btn-success" data-t="btn_preview">预览</button>
         </div>
         <div id="status" class="status"></div>
     </div>
 
     <script>
         (function() {
-            const API_URL = `http://localhost:${location.port}/api/data`;
-            let currentLang = 'ja';
-            let jsonData = {};
+            var API_URL = 'http://localhost:' + location.port + '/api/data';
+            var currentLang = 'ja';
+            var jsonData = {};
+            var labelMap = {};
 
-            // 加载数据
             async function loadData() {
                 try {
-                    const res = await fetch(API_URL);
+                    var res = await fetch(API_URL);
                     jsonData = await res.json();
                     fillAllForms();
+                    updateLabels();
+                    console.log('Initial lang:', currentLang, 'Title:', jsonData[currentLang] && jsonData[currentLang].ui_title);
                 } catch (err) {
                     showStatus('加载失败: ' + err.message, 'error');
                 }
             }
 
-            // 填充所有表单
             function fillAllForms() {
-                const data = jsonData[currentLang] || {};
-                const fields = document.querySelectorAll('[data-field]');
-                fields.forEach(function(field) {
-                    const key = field.getAttribute('data-field');
-                    if (field.tagName === 'TEXTAREA') {
-                        field.value = data[key] || '';
-                    } else {
-                        field.value = data[key] || '';
+                var data = jsonData[currentLang] || {};
+                var fields = document.querySelectorAll('[data-field]');
+                for (var i = 0; i < fields.length; i++) {
+                    var field = fields[i];
+                    var key = field.getAttribute('data-field');
+                    field.value = data[key] || '';
+                }
+            }
+
+            function updateLabels() {
+                var data = jsonData[currentLang] || {};
+
+                var uiKeys = [
+                    'ui_title', 'tab_basic', 'tab_strengths', 'tab_education', 'tab_company', 
+                    'tab_projects', 'tab_skills', 'tab_pr', 'btn_save', 'btn_preview',
+                    'lbl_name', 'lbl_title', 'lbl_summary', 'lbl_summary_title', 'lbl_summary_text', 'lbl_email',
+                    'lbl_strengths_title', 'lbl_edu_title', 'lbl_period', 'lbl_school_label', 'lbl_school',
+                    'lbl_company_title', 'lbl_company_name', 'lbl_proj_title', 'lbl_skill_title',
+                    'lbl_skill_lang', 'lbl_skill_os', 'lbl_skill_db', 'lbl_skill_fw', 'lbl_skill_cloud', 'lbl_skill_tools', 'lbl_tech_env',
+                    'lbl_pr_title'
+                ];
+                for (var k = 0; k < uiKeys.length; k++) {
+                    var uk = uiKeys[k];
+                    var uEls = document.querySelectorAll('[data-t="' + uk + '"]');
+                    for (var m = 0; m < uEls.length; m++) {
+                        if (data[uk]) {
+                            var el = uEls[m];
+                            if (el.tagName === 'TITLE') {
+                                document.title = data[uk];
+                            } else {
+                                el.textContent = data[uk];
+                            }
+                        }
                     }
+                }
+            }
+
+            function reloadData() {
+                fetch(API_URL).then(function(r) { return r.json(); }).then(function(d) {
+                    jsonData = d;
+                    fillAllForms();
+                    updateLabels();
+                    console.log('Reloaded, currentLang=', currentLang, 'ui_title=', jsonData[currentLang] && jsonData[currentLang].ui_title);
                 });
             }
 
-            // 显示状态
             function showStatus(msg, type) {
-                const statusEl = document.getElementById('status');
+                var statusEl = document.getElementById('status');
                 statusEl.textContent = msg;
                 statusEl.className = 'status ' + type;
             }
 
-            // 收集表单数据
             function collectData() {
-                const data = {};
-                const fields = document.querySelectorAll('[data-field]');
-                fields.forEach(function(field) {
+                var data = {};
+                var fields = document.querySelectorAll('[data-field]');
+                for (var i = 0; i < fields.length; i++) {
+                    var field = fields[i];
                     if (field.value) {
                         data[field.getAttribute('data-field')] = field.value;
                     }
-                });
+                }
                 return data;
             }
 
-            // 语言切换
-            document.querySelectorAll('.lang-btn').forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    document.querySelectorAll('.lang-btn').forEach(function(b) {
-                        b.classList.remove('active');
-                    });
-                    btn.classList.add('active');
-                    currentLang = btn.getAttribute('data-lang');
+            var langBtns = document.querySelectorAll('.lang-btn');
+            for (var i = 0; i < langBtns.length; i++) {
+                langBtns[i].addEventListener('click', function() {
+                    document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+                    this.classList.add('active');
+                    currentLang = this.getAttribute('data-lang');
+                    console.log('Language changed to:', currentLang);
+                    var newData = jsonData[currentLang] || {};
+                    console.log('  ui_title in data:', newData.ui_title);
+                    console.log('  elements found:', document.querySelectorAll('[data-t="ui_title"]').length);
                     fillAllForms();
+                    updateLabels();
                 });
-            });
+            }
 
-            // 标签切换
-            document.querySelectorAll('.tab-btn').forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    document.querySelectorAll('.tab-btn').forEach(function(t) {
-                        t.classList.remove('active');
-                    });
-                    document.querySelectorAll('.editor-section').forEach(function(s) {
-                        s.classList.remove('active');
-                    });
-                    btn.classList.add('active');
-                    document.querySelector('[data-section="' + btn.getAttribute('data-tab') + '"]').classList.add('active');
+            var tabBtns = document.querySelectorAll('.tab-btn');
+            for (var i = 0; i < tabBtns.length; i++) {
+                tabBtns[i].addEventListener('click', function() {
+                    for (var j = 0; j < tabBtns.length; j++) {
+                        tabBtns[j].classList.remove('active');
+                    }
+                    var sections = document.querySelectorAll('.editor-section');
+                    for (var j = 0; j < sections.length; j++) {
+                        sections[j].classList.remove('active');
+                    }
+                    this.classList.add('active');
+                    var tabName = this.getAttribute('data-tab');
+                    document.querySelector('[data-section="' + tabName + '"]').classList.add('active');
                 });
-            });
+            }
 
-            // 保存
             document.getElementById('saveBtn').addEventListener('click', async function() {
-                const btn = document.getElementById('saveBtn');
+                var btn = document.getElementById('saveBtn');
                 btn.disabled = true;
 
                 try {
-                    const formData = collectData();
+                    var formData = collectData();
                     jsonData[currentLang] = Object.assign({}, jsonData[currentLang], formData);
 
-                    const res = await fetch(API_URL, {
+                    var res = await fetch(API_URL, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(jsonData)
@@ -469,12 +507,10 @@
                 }
             });
 
-            // 预览
             document.getElementById('previewBtn').addEventListener('click', function() {
                 window.open('index.html?lang=' + currentLang, '_blank');
             });
 
-            // 初始化
             loadData();
         })();
     </script>
