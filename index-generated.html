@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>職務経歴書</title>
+    <style>
+        body { font-family: "Helvetica Neue", Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+        h1 { font-size: 1.8em; margin-bottom: 0.5em; }
+        h2 { font-size: 1.4em; border-bottom: 2px solid #666; padding-bottom: 5px; margin-top: 1.5em; }
+        h3 { font-size: 1.1em; margin: 0; }
+        h4 { font-size: 1em; margin: 10px 0 5px; }
+        .project { border: 1px solid #ddd; padding: 15px; margin: 15px 0; border-radius: 5px; }
+        .project-header { display: flex; justify-content: space-between; align-items: baseline; }
+        .period { color: #666; font-size: 0.9em; }
+        .role { font-weight: bold; color: #555; margin: 5px 0; }
+        .overview { font-style: italic; margin: 10px 0; }
+        .tech-tag { background: #e0e0e0; padding: 2px 8px; margin: 2px; border-radius: 3px; font-size: 0.85em; }
+        .tech-env { margin-top: 10px; }
+        ul { padding-left: 20px; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; }
+        th { background: #f5f5f5; }
+        .lang-btn { background: #fff; border: 1px solid #333; padding: 5px 10px; margin-right: 5px; cursor: pointer; }
+        .lang-btn.active { background: #333; color: #fff; }
+        .skill-category { margin: 10px 0; }
+        .skill-items { display: inline; }
+    </style>
+</head>
+<body>
+    
+    <div style="margin-bottom: 20px;">
+        <button class="lang-btn" data-lang="zh">中文</button>
+        <button class="lang-btn" data-lang="ja">日本語</button>
+        <button class="lang-btn active" data-lang="en">English</button>
+    </div>
+    <h1 data-t="title">職務経歴書</h1>
+    
+    <h2 data-t="summary_title">Career Summary</h2>
+    <p data-t="summary">EC・流通・保険・金融といった 高トラフィックかつ業務複雑度の高い業界 において、 18年以上 にわたり業務系システム開発に従事。 要件定義・基本設計などの 上流工程 から、 実装・各種テスト・本番リリース・運用保守まで、 システムライフサイクル全体を一貫して担当。 特に以下の分野に強みを持つ。</p>
+    
+    <h2 data-t="strengths_title">Key Strengths</h2>
+    <ul>
+        <li data-t="s1_title">Javaを中心とした業務システム開発（17年以上）</li>
+        <li data-t="s2_title">要件定義～設計～開発～テスト～運用までの全工程経験</li>
+        <li data-t="s3_title">大規模・長期プロジェクトにおける開発・保守の実務経験</li>
+        <li data-t="s4_title">品質を意識したテスト設計・テスト実施</li>
+        <li data-t="s5_title">サブリーダー／リーダーとしての進捗・品質管理</li>
+        <li data-t="s6_title">EC・流通・保険・金融業界の業務知識</li>
+        <li data-t="s7_title">オフショア開発・多国籍チームでの協業経験</li>
+    </ul>
+    
+    <h2 data-t="edu_title">Education</h2>
+    <table>
+        <tr><th data-t="period_label">Period</th><td data-t="period_edu">2006年04月 ～ 2008年03月</td></tr>
+        <tr><th data-t="school_label">School</th><td data-t="school">日本大学 生産工学研究科 電気電子工学専攻（大学院）</td></tr>
+    </table>
+    
+    <h2 data-t="company_title">Work History</h2>
+    <table>
+        <tr><th data-t="period_label">Period</th><th data-t="company_label">Company</th></tr>
+        <tr><td data-t="c1_period">2024年06月 ～ 現在</td><td data-t="c1">GienTech Japan株式会社</td></tr>
+        <tr><td data-t="c2_period">2017年08月 ～ 2024年04月</td><td data-t="c2">株式会社テクノプロ（テクノプロ・エンジニアリング社）</td></tr>
+        <tr><td data-t="c3_period">2014年08月 ～ 2017年03月</td><td data-t="c3">株式会社イー・ビジネス</td></tr>
+        <tr><td data-t="c4_period">2012年04月 ～ 2014年06月</td><td data-t="c4">株式会社夢テクノロジー</td></tr>
+        <tr><td data-t="c5_period">2008年04月 ～ 2012年03月</td><td data-t="c5">ベース株式会社</td></tr>
+    </table>
+    
+    <h2 data-t="proj_title">Project Experience</h2>
+    
+    <div class="project">
+        <div class="project-header">
+            <h3 data-t="p1_title">大手保険業・流通業向け 基幹システム開発・保守</h3>
+            <span class="period" data-t="p1_period">2010年01月 ～ 2011年03月</span>
+        </div>
+        <div class="role" data-t="p1_role">サブリーダー（10名）</div>
+        <div class="overview" data-t="p1_overview"></div>
+        <h4>Responsibilities</h4>
+        <ul>
+            <li data-t="p1_d1">法改正対応・新サービス対応</li>
+            <li data-t="p1_d2">家族フォルダ／家族割引機能開発</li>
+            <li data-t="p1_d3">バッチ処理・業務ロジック実装</li>
+            <li data-t="p1_d4">進捗・品質管理</li>
+        </ul>
+        <div class="tech-env"><span data-t="tech_env">Tech: </span><span class="tech-tag">OS：Windows / MSP-OSIV</span> <span class="tech-tag">Language：Java / COBOL</span> <span class="tech-tag">DB：Oracle / NDB</span></div>
+    </div>
+
+    <div class="project">
+        <div class="project-header">
+            <h3 data-t="p2_title">大手証券会社 業務システム保守</h3>
+            <span class="period" data-t="p2_period">2011年04月 ～ 2012年03月</span>
+        </div>
+        <div class="role" data-t="p2_role">サブリーダー（9名）</div>
+        <div class="overview" data-t="p2_overview"></div>
+        <h4>Responsibilities</h4>
+        <ul>
+            <li data-t="p2_d1">本番リリース対応</li>
+            <li data-t="p2_d2">データ修正・調査</li>
+            <li data-t="p2_d3">VBAによる分析ツール開発</li>
+            <li data-t="p2_d4">障害調査・対応</li>
+        </ul>
+        <div class="tech-env"><span data-t="tech_env">Tech: </span><span class="tech-tag">OS：Windows / Linux</span> <span class="tech-tag">Language：Java / VBA</span> <span class="tech-tag">DB：Oracle / Sybase</span></div>
+    </div>
+
+    <div class="project">
+        <div class="project-header">
+            <h3 data-t="p3_title">中小企業向け 事務管理システム開発</h3>
+            <span class="period" data-t="p3_period">2012年04月 ～ 2012年10月</span>
+        </div>
+        <div class="role" data-t="p3_role">リーダー（5名）</div>
+        <div class="overview" data-t="p3_overview"></div>
+        <h4>Responsibilities</h4>
+        <ul>
+            <li data-t="p3_d1">勤怠管理／有給申請／研修予約機能開発</li>
+            <li data-t="p3_d2">要件定義・設計</li>
+            <li data-t="p3_d3">チーム進捗・品質管理</li>
+        </ul>
+        <div class="tech-env"><span data-t="tech_env">Tech: </span><span class="tech-tag">OS：Windows / Linux</span> <span class="tech-tag">Language：Java</span> <span class="tech-tag">DB：MySQL</span></div>
+    </div>
+
+    <div class="project">
+        <div class="project-header">
+            <h3 data-t="p4_title">大学向け 出席管理システム（Android / FeliCa）</h3>
+            <span class="period" data-t="p4_period">2012年11月 ～ 2013年07月</span>
+        </div>
+        <div class="role" data-t="p4_role">メンバー（3名）</div>
+        <div class="overview" data-t="p4_overview"></div>
+        <h4>Responsibilities</h4>
+        <ul>
+            <li data-t="p4_d1">Android出席管理アプリ開発</li>
+            <li data-t="p4_d2">NFC（FeliCa）データ取得処理</li>
+            <li data-t="p4_d3">バックオフィスシステム開発</li>
+            <li data-t="p4_d4">特定デバイス向け検証・導入</li>
+            <li data-t="p4_d5">Device：Nexus7 / PaSoRi / RC-S370 / RC-S380</li>
+        </ul>
+        <div class="tech-env"><span data-t="tech_env">Tech: </span><span class="tech-tag">OS：Windows</span> <span class="tech-tag">Language：Java / PHP</span> <span class="tech-tag">Server：CentOS / Tomcat / Apache</span></div>
+    </div>
+
+    <div class="project">
+        <div class="project-header">
+            <h3 data-t="p5_title">三井住友系 マンション管理システム開発</h3>
+            <span class="period" data-t="p5_period">2013年08月 ～ 2014年07月</span>
+        </div>
+        <div class="role" data-t="p5_role">サブリーダー（10名）</div>
+        <div class="overview" data-t="p5_overview"></div>
+        <h4>Responsibilities</h4>
+        <ul>
+            <li data-t="p5_d1">契約情報／建物・設備情報管理機能の設計・実装</li>
+            <li data-t="p5_d2">画面・帳票設計</li>
+            <li data-t="p5_d3">成果物レビュー</li>
+            <li data-t="p5_d4">進捗管理・品質管理</li>
+            <li data-t="p5_d5">Framework：楽々フレーム</li>
+        </ul>
+        <div class="tech-env"><span data-t="tech_env">Tech: </span><span class="tech-tag">OS：Windows / Linux</span> <span class="tech-tag">DB：Oracle</span> <span class="tech-tag">Language：Java / SQL</span> <span class="tech-tag">Server：CentOS / Nginx / Tomcat / Apache</span></div>
+    </div>
+
+    <div class="project">
+        <div class="project-header">
+            <h3 data-t="p6_title">楽天 台湾市場 システム保守・開発</h3>
+            <span class="period" data-t="p6_period">2014年08月 ～ 2016年08月</span>
+        </div>
+        <div class="role" data-t="p6_role">サブリーダー（20名）</div>
+        <div class="overview" data-t="p6_overview"></div>
+        <h4>Responsibilities</h4>
+        <ul>
+            <li data-t="p6_d1">加盟店管理（商品・在庫・ポイント・クーポン）</li>
+            <li data-t="p6_d2">エンドユーザー向け注文・決済・履歴管理</li>
+            <li data-t="p6_d3">進捗管理・品質管理</li>
+        </ul>
+        
+    </div>
+
+    <div class="project">
+        <div class="project-header">
+            <h3 data-t="p7_title">楽天 Kaola システム開発</h3>
+            <span class="period" data-t="p7_period">2016年08月 ～ 2017年03月</span>
+        </div>
+        <div class="role" data-t="p7_role">サブリーダー（12名）</div>
+        <div class="overview" data-t="p7_overview"></div>
+        <h4>Responsibilities</h4>
+        <ul>
+            <li data-t="p7_d1">中国大手EC企業との連携システム開発</li>
+            <li data-t="p7_d2">日本市場注文データ同期機能</li>
+            <li data-t="p7_d3">注文内容PDF自動送信機能</li>
+            <li data-t="p7_d4">要件定義～設計～開発～保守</li>
+            <li data-t="p7_d5">品質管理・後輩指導</li>
+        </ul>
+        
+    </div>
+
+    <div class="project">
+        <div class="project-header">
+            <h3 data-t="p8_title">楽天トラベル システム開発（長期・大規模）</h3>
+            <span class="period" data-t="p8_period">2017年08月 ～ 2024年03月</span>
+        </div>
+        <div class="role" data-t="p8_role">メンバー（20名）</div>
+        <div class="overview" data-t="p8_overview"></div>
+        <h4>Responsibilities</h4>
+        <ul>
+            <li data-t="p8_d1">Bus / Rent Car / Car Share</li>
+            <li data-t="p8_d2">機能追加・仕様変更に伴う設計および実装</li>
+            <li data-t="p8_d3">本番障害の調査・修正およびリリース対応</li>
+            <li data-t="p8_d4">環境構築および運用サポート</li>
+            <li data-t="p8_d5">UT～結合・性能・外部連携テストまで一貫対応</li>
+            <li data-t="p8_d6">Java 1.7 → 1.8 バージョンアップ</li>
+            <li data-t="p8_d7">Oracle 9i → 10g 移行</li>
+            <li data-t="p8_d8">Struts → Spring MVC マイグレーション</li>
+            <li data-t="p8_d9">CentOS → Rocky Linux 移行</li>
+        </ul>
+        <div class="tech-env"><span data-t="tech_env">Tech: </span><span class="tech-tag">OS：MacOS / Linux</span> <span class="tech-tag">DB：Oracle / MySQL / MongoDB</span> <span class="tech-tag">Language：Java / JavaScript / JSP / PL/SQL / Shell / Python</span> <span class="tech-tag">Tools：Jenkins / Jennifer</span> <span class="tech-tag">Server：Nginx / Tomcat / Apache / Docker / Podman</span> <span class="tech-tag">Other：Redis</span></div>
+    </div>
+
+    <div class="project">
+        <div class="project-header">
+            <h3 data-t="p9_title">トラスコ オレンジブック BtoB ECシステム開発</h3>
+            <span class="period" data-t="p9_period">2024年06月 ～ 2025年06月</span>
+        </div>
+        <div class="role" data-t="p9_role">リーダー（3名）</div>
+        <div class="overview" data-t="p9_overview">BtoB ECサービスにおけるバックエンドシステム開発。</div>
+        <h4>Responsibilities</h4>
+        <ul>
+            <li data-t="p9_d1">OBクロスバックAPI開発</li>
+            <li data-t="p9_d2">買い物カゴ機能の設計・実装</li>
+            <li data-t="p9_d3">クイックオーダー機能の開発</li>
+            <li data-t="p9_d4">メンバー進捗管理およびレビュー</li>
+            <li data-t="p9_d5">詳細設計／実装／結合テスト／システムテスト</li>
+        </ul>
+        <div class="tech-env"><span data-t="tech_env">Tech: </span><span class="tech-tag">OS：Windows / Linux</span> <span class="tech-tag">Language：Java / JavaScript / HTML / CSS</span> <span class="tech-tag">DB：Oracle</span></div>
+    </div>
+
+    <div class="project">
+        <div class="project-header">
+            <h3 data-t="p10_title">サプライチェーン管理システム リプレース</h3>
+            <span class="period" data-t="p10_period">2025年08月 ～</span>
+        </div>
+        <div class="role" data-t="p10_role">メンバー（7名）</div>
+        <div class="overview" data-t="p10_overview">既存スクラッチシステム「spirits」により構築された</div>
+        <h4>Responsibilities</h4>
+        <ul>
+            <li data-t="p10_d1">MDMチームに所属し、取引先・品番・価格情報などのマスタ管理領域を担当</li>
+            <li data-t="p10_d2">現行システム設計書・関連資料の調査および情報整理</li>
+            <li data-t="p10_d3">仕様情報が不足する状況下での業務・データ構造の分析</li>
+            <li data-t="p10_d4">リプレースに向けた設計方針検討および技術的支援</li>
+        </ul>
+        <div class="tech-env"><span data-t="tech_env">Tech: </span><span class="tech-tag">OS：Windows</span> <span class="tech-tag">DB：Oracle</span></div>
+    </div>
+    
+    <h2 data-t="skill_title">Technical Skills</h2>
+    
+    <div class="skill-category">
+        <strong>プログラミング言語:</strong>
+        <div class="skill-items"><span class="tech-tag">Java（中心とする業務システム開発、17年以上の経験）</span><span class="tech-tag">JavaScript</span><span class="tech-tag">Python</span><span class="tech-tag">PHP</span><span class="tech-tag">C#</span><span class="tech-tag">COBOL</span><span class="tech-tag">VBA</span><span class="tech-tag">HTML</span><span class="tech-tag">CSS</span><span class="tech-tag">JSP</span><span class="tech-tag">PL/SQL</span><span class="tech-tag">Shell</span></div>
+    </div>
+
+    <div class="skill-category">
+        <strong>オペレーティングシステム:</strong>
+        <div class="skill-items"><span class="tech-tag">MacOS</span><span class="tech-tag">Linux（CentOS、Rocky Linuxを含む）</span><span class="tech-tag">Windows</span><span class="tech-tag">MSP-OSIV</span></div>
+    </div>
+
+    <div class="skill-category">
+        <strong>データベース:</strong>
+        <div class="skill-items"><span class="tech-tag">Oracle（長年の使用経験）</span><span class="tech-tag">MySQL</span><span class="tech-tag">MongoDB</span><span class="tech-tag">SQL Server</span><span class="tech-tag">NDB</span><span class="tech-tag">Sybase</span></div>
+    </div>
+
+    <div class="skill-category">
+        <strong>サーバー/ミドルウェア:</strong>
+        <div class="skill-items"><span class="tech-tag">Nginx</span><span class="tech-tag">Tomcat</span><span class="tech-tag">Apache</span></div>
+    </div>
+
+    <div class="skill-category">
+        <strong>コンテナ技術:</strong>
+        <div class="skill-items"><span class="tech-tag">Docker</span><span class="tech-tag">Podman</span></div>
+    </div>
+
+    <div class="skill-category">
+        <strong>フレームワーク/プラットフォーム:</strong>
+        <div class="skill-items"><span class="tech-tag">Spring MVC</span><span class="tech-tag">Struts</span><span class="tech-tag">楽々フレーム</span></div>
+    </div>
+
+    <div class="skill-category">
+        <strong>クラウドサービス:</strong>
+        <div class="skill-items"></div>
+    </div>
+
+    <div class="skill-category">
+        <strong>テストフレームワーク:</strong>
+        <div class="skill-items"><span class="tech-tag">JUnit</span><span class="tech-tag">Mockito</span></div>
+    </div>
+
+    <div class="skill-category">
+        <strong>エディタ:</strong>
+        <div class="skill-items"><span class="tech-tag">IntelliJ</span><span class="tech-tag">VSCode</span><span class="tech-tag">Eclipse</span></div>
+    </div>
+
+    <div class="skill-category">
+        <strong>開発ツール:</strong>
+        <div class="skill-items"><span class="tech-tag">Jenkins</span><span class="tech-tag">Zabbix</span><span class="tech-tag">JIRA</span><span class="tech-tag">Jennifer</span></div>
+    </div>
+
+    <div class="skill-category">
+        <strong>バージョン管理:</strong>
+        <div class="skill-items"><span class="tech-tag">git</span><span class="tech-tag">GitHub</span></div>
+    </div>
+
+    <div class="skill-category">
+        <strong>コミュニケーションツール:</strong>
+        <div class="skill-items"><span class="tech-tag">Zoom</span><span class="tech-tag">Slack</span><span class="tech-tag">Teams</span><span class="tech-tag">Confluence</span></div>
+    </div>
+    
+    <h2 data-t="pr_title">Self PR</h2>
+    <ul>
+        <li data-t="pr1">開発と運用の両方を経験し、</li>
+        <li data-t="pr2">新技術・業務知識のキャッチアップ力</li>
+        <li data-t="pr3">15カ国以上の多国籍チームでの協業経験</li>
+        <li data-t="pr4">大規模・長期システムにおける安定運用・改善実績</li>
+    </ul>
+    <script src="app.js"></script>
+</body>
+</html>
