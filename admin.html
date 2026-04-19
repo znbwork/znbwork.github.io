@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简历管理</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; padding: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        h1 { font-size: 24px; color: #333; }
+        .lang-bar { display: flex; gap: 8px; }
+        .lang-btn { padding: 8px 16px; border: 1px solid #ddd; background: #fff; cursor: pointer; border-radius: 4px; }
+        .lang-btn.active { background: #007bff; color: #fff; border-color: #007bft; }
+        .editor { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .json-editor { width: 100%; min-height: 500px; font-family: monospace; font-size: 14px; padding: 12px; border: 1px solid #ddd; border-radius: 4px; resize: vertical; }
+        .controls { display: flex; gap: 12px; margin-top: 16px; }
+        .btn { padding: 10px 24px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; }
+        .btn-primary { background: #007bff; color: #fff; }
+        .btn-secondary { background: #6c757d; color: #fff; }
+        .btn-success { background: #28a745; color: #fff; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .status { margin-top: 12px; font-size: 14px; }
+        .status.success { color: #28a745; }
+        .status.error { color: #dc3545; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>简历数据管理</h1>
+        <div class="lang-bar">
+            <button class="lang-btn" data-lang="zh">中文</button>
+            <button class="lang-btn active" data-lang="ja">日本語</button>
+            <button class="lang-btn" data-lang="en">English</button>
+        </div>
+    </div>
+
+    <div class="editor">
+        <textarea id="jsonEditor" class="json-editor"></textarea>
+        <div class="controls">
+            <button id="formatBtn" class="btn btn-secondary">格式化</button>
+            <button id="validateBtn" class="btn btn-secondary">验证</button>
+            <button id="saveBtn" class="btn btn-primary">保存到文件</button>
+            <button id="previewBtn" class="btn btn-success">预览</button>
+        </div>
+        <div id="status" class="status"></div>
+    </div>
+
+    <script>
+        const API_URL = `http://localhost:${location.port}/api/data`;
+        let currentLang = 'ja';
+        let jsonData = {};
+
+        async function loadData() {
+            try {
+                const res = await fetch(API_URL);
+                jsonData = await res.json();
+                updateEditor();
+                showStatus('加载成功', 'success');
+            } catch (err) {
+                showStatus('加载失败: ' + err.message, 'error');
+            }
+        }
+
+        function updateEditor() {
+            document.getElementById('jsonEditor').value = JSON.stringify(jsonData[currentLang], null, 2);
+        }
+
+        function showStatus(msg, type) {
+            document.getElementById('status').textContent = msg;
+            document.getElementById('status').className = 'status ' + type;
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentLang = btn.dataset.lang;
+                updateEditor();
+            });
+        });
+
+        document.getElementById('formatBtn').addEventListener('click', () => {
+            try {
+                const data = JSON.parse(document.getElementById('jsonEditor').value);
+                document.getElementById('jsonEditor').value = JSON.stringify(data, null, 2);
+                showStatus('格式化成功', 'success');
+            } catch (err) {
+                showStatus('JSON格式错误: ' + err.message, 'error');
+            }
+        });
+
+        document.getElementById('validateBtn').addEventListener('click', () => {
+            try {
+                JSON.parse(document.getElementById('jsonEditor').value);
+                showStatus('验证通过', 'success');
+            } catch (err) {
+                showStatus('验证失败: ' + err.message, 'error');
+            }
+        });
+
+        document.getElementById('saveBtn').addEventListener('click', async () => {
+            const btn = document.getElementById('saveBtn');
+            btn.disabled = true;
+
+            try {
+                const input = JSON.parse(document.getElementById('jsonEditor').value);
+                jsonData[currentLang] = input;
+
+                const res = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(jsonData)
+                });
+
+                if (res.ok) {
+                    showStatus('保存成功', 'success');
+                } else {
+                    throw new Error('保存失败');
+                }
+            } catch (err) {
+                showStatus('保存失败: ' + err.message, 'error');
+            } finally {
+                btn.disabled = false;
+            }
+        });
+
+        document.getElementById('previewBtn').addEventListener('click', () => {
+            window.open('index.html?lang=' + currentLang, '_blank');
+        });
+
+        loadData();
+    </script>
+</body>
+</html>
