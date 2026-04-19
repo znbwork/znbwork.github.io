@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-t="ui_title">Resume Editor</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; padding: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background: #fff; padding: 16px 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        h1 { font-size: 24px; color: #333; }
+        .lang-bar { display: flex; gap: 8px; }
+        .lang-btn { padding: 8px 16px; border: 1px solid #ddd; background: #fff; cursor: pointer; border-radius: 4px; }
+        .lang-btn.active { background: #007bff; color: #fff; border-color: #007bff; }
+        .tabs { display: flex; gap: 4px; margin-bottom: 16px; background: #fff; padding: 12px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow-x: auto; flex-wrap: wrap; }
+        .tab-btn { padding: 10px 20px; border: none; background: transparent; cursor: pointer; border-radius: 4px; white-space: nowrap; }
+        .tab-btn.active { background: #007bff; color: #fff; }
+        .editor-section { display: none; background: #fff; border-radius: 8px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .editor-section.active { display: block; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 6px; color: #333; font-size: 14px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+        .form-group textarea { min-height: 60px; resize: vertical; }
+        .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+        .section-header { display: flex; justify-content: space-between; align-items: center; font-size: 16px; font-weight: 600; margin: 20px 0 12px; padding-bottom: 8px; border-bottom: 2px solid #007bff; color: #333; }
+        .section-header:first-of-type { margin-top: 0; }
+        .section-header .btn-del { background: #dc3545; color: #fff; padding: 4px 12px; font-size: 12px; border: none; border-radius: 4px; cursor: pointer; }
+        .btn-add { background: #28a745; color: #fff; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; margin-top: 12px; }
+        .controls { display: flex; gap: 12px; margin-top: 24px; padding-top: 20px; border-top: 1px solid #eee; }
+        .btn { padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; }
+        .btn-primary { background: #007bff; color: #fff; }
+        .btn-success { background: #28a745; color: #fff; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .status { margin-top: 12px; font-size: 14px; }
+        .status.success { color: #28a745; }
+        .status.error { color: #dc3545; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 data-t="ui_title">Resume Editor</h1>
+        <div class="lang-bar">
+            <button class="lang-btn" data-lang="zh">中文</button>
+            <button class="lang-btn active" data-lang="ja">日本語</button>
+            <button class="lang-btn" data-lang="en">English</button>
+        </div>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="basic" data-t="tab_basic">Basic Info</button>
+        <button class="tab-btn" data-tab="strengths" data-t="tab_strengths">Strengths</button>
+        <button class="tab-btn" data-tab="education" data-t="tab_education">Education</button>
+        <button class="tab-btn" data-tab="company" data-t="tab_company">Company</button>
+        <button class="tab-btn" data-tab="projects" data-t="tab_projects">Projects</button>
+        <button class="tab-btn" data-tab="skills" data-t="tab_skills">Skills</button>
+        <button class="tab-btn" data-tab="pr" data-t="tab_pr">Self PR</button>
+    </div>
+
+    <div class="editor">
+        <!-- 基本信息 -->
+        <div class="editor-section active" data-section="basic">
+            <div class="form-group">
+                <label data-t="lbl_name">Name</label>
+                <input type="text" data-field="name">
+            </div>
+            <div class="form-group">
+                <label data-t="lbl_title">Job Title</label>
+                <input type="text" data-field="title">
+            </div>
+            <div class="form-group">
+                <label data-t="lbl_summary">Summary</label>
+                <textarea data-field="summary"></textarea>
+            </div>
+            <div class="form-group">
+                <label data-t="lbl_summary_title">Summary Title</label>
+                <input type="text" data-field="summary_title">
+            </div>
+            <div class="form-group">
+                <label data-t="lbl_summary_text">Summary Text</label>
+                <textarea data-field="summary_text"></textarea>
+            </div>
+            <div class="form-group">
+                <label data-t="lbl_email">Email</label>
+                <input type="text" data-field="email">
+            </div>
+        </div>
+
+        <!-- 强项 -->
+        <div class="editor-section" data-section="strengths">
+            <div class="form-group">
+                <label data-t="lbl_strengths_title">Strengths Title</label>
+                <input type="text" data-field="strengths_title">
+            </div>
+            <div id="strengths-container"></div>
+            <button class="btn-add" id="add-strength">+ Add Strength</button>
+        </div>
+
+        <!-- 学历 -->
+        <div class="editor-section" data-section="education">
+            <div class="form-group">
+                <label data-t="lbl_edu_title">Education Title</label>
+                <input type="text" data-field="edu_title">
+            </div>
+            <div id="education-container"></div>
+            <button class="btn-add" id="add-education">+ Add Education</button>
+        </div>
+
+        <!-- 公司经历 -->
+        <div class="editor-section" data-section="company">
+            <div class="form-group">
+                <label data-t="lbl_company_title">Company History</label>
+                <input type="text" data-field="company_title">
+            </div>
+            <div class="form-group">
+                <label data-t="lbl_company_name">Company Name</label>
+                <input type="text" data-field="company_name">
+            </div>
+            <div id="company-container"></div>
+            <button class="btn-add" id="add-company">+ Add Company</button>
+        </div>
+
+        <!-- 项目经验 -->
+        <div class="editor-section" data-section="projects">
+            <div class="form-group">
+                <label data-t="lbl_proj_title">Projects</label>
+                <input type="text" data-field="proj_title">
+            </div>
+            <div id="projects-container"></div>
+            <button class="btn-add" id="add-project">+ Add Project</button>
+        </div>
+
+        <!-- 技术技能 -->
+        <div class="editor-section" data-section="skills">
+            <div class="form-group">
+                <label data-t="lbl_skill_title">Skills</label>
+                <input type="text" data-field="skill_title">
+            </div>
+            <div class="form-group">
+                <label data-t="lbl_skill_lang">Programming Languages</label>
+                <input type="text" data-field="skill_lang">
+            </div>
+            <div class="form-group">
+                <label data-t="lbl_skill_os">Operating Systems</label>
+                <input type="text" data-field="skill_os">
+            </div>
+            <div class="form-group">
+                <label data-t="lbl_skill_db">Databases</label>
+                <input type="text" data-field="skill_db">
+            </div>
+            <div class="form-group">
+                <label>Middleware/Containers</label>
+                <input type="text" data-field="skill_middleware">
+            </div>
+            <div class="form-group">
+                <label data-t="lbl_skill_fw">Frameworks/Platforms</label>
+                <input type="text" data-field="skill_fw">
+            </div>
+            <div class="form-group">
+                <label data-t="lbl_skill_cloud">Cloud Services</label>
+                <input type="text" data-field="skill_cloud">
+            </div>
+            <div class="form-group">
+                <label data-t="lbl_skill_tools">Development Tools</label>
+                <input type="text" data-field="skill_tools">
+            </div>
+            <div class="form-group">
+                <label>Communication Tools</label>
+                <input type="text" data-field="skill_comm">
+            </div>
+            <div class="form-group">
+                <label data-t="lbl_tech_env">Tech Env Label</label>
+                <input type="text" data-field="tech_env">
+            </div>
+        </div>
+
+        <!-- 自我PR -->
+        <div class="editor-section" data-section="pr">
+            <div class="form-group">
+                <label data-t="lbl_pr_title">Self PR</label>
+                <input type="text" data-field="pr_title">
+            </div>
+            <div class="form-group">
+                <label>PR 1</label>
+                <textarea data-field="pr1"></textarea>
+            </div>
+            <div class="form-group">
+                <label>PR 2</label>
+                <textarea data-field="pr2"></textarea>
+            </div>
+            <div class="form-group">
+                <label>PR 3</label>
+                <textarea data-field="pr3"></textarea>
+            </div>
+            <div class="form-group">
+                <label>PR 4</label>
+                <textarea data-field="pr4"></textarea>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="saveBtn" class="btn btn-primary" data-t="btn_save">Save</button>
+            <button id="previewBtn" class="btn btn-success" data-t="btn_preview">Preview</button>
+        </div>
+        <div id="status" class="status"></div>
+    </div>
+
+    <script>
+    (function() {
+        var API_URL = 'http://localhost:' + location.port + '/api/data';
+        var currentLang = 'ja';
+        var jsonData = {};
+
+        // 模板函数
+        function strengthTemplate(index, data) {
+            return '<div class="section-header" data-sindex="' + index + '">' +
+                '<span>Strength ' + (index + 1) + '</span>' +
+                '<button type="button" class="btn-del" onclick="removeItem(this, \'strengths\', ' + index + ')">Delete</button>' +
+                '</div>' +
+                '<div class="form-row">' +
+                '<div class="form-group"><label>Title <input type="text" data-field="s' + (index + 1) + '_title" value="' + (data ? data.title : '') + '"></label></div>' +
+                '<div class="form-group"><label>Description <input type="text" data-field="s' + (index + 1) + '_desc" value="' + (data ? data.desc : '') + '"></label></div>' +
+                '</div>';
+        }
+
+        function companyTemplate(index, data) {
+            return '<div class="section-header" data-cindex="' + index + '">' +
+                '<span>Company ' + (index + 1) + '</span>' +
+                '<button type="button" class="btn-del" onclick="removeItem(this, \'company\', ' + index + ')">Delete</button>' +
+                '</div>' +
+                '<div class="form-row">' +
+                '<div class="form-group"><label>Name <input type="text" data-field="c' + (index + 1) + '" value="' + (data ? data.name : '') + '"></label></div>' +
+                '<div class="form-group"><label>Period <input type="text" data-field="c' + (index + 1) + '_period" value="' + (data ? data.period : '') + '"></label></div>' +
+                '</div>';
+        }
+
+function projectTemplate(index, data) {
+            return '<div class="section-header" data-pindex="' + index + '">' +
+                '<span>Project ' + (index + 1) + '</span>' +
+                '<button type="button" class="btn-del" onclick="removeItem(this, \'projects\', ' + index + ')">Delete</button>' +
+                '</div>' +
+                '<div class="form-group"><label>Title <input type="text" data-field="p' + (index + 1) + '_title" value="' + (data ? data.title : '') + '"></label></div>' +
+                '<div class="form-row">' +
+                '<div class="form-group"><label>Role <input type="text" data-field="p' + (index + 1) + '_role" value="' + (data ? data.role : '') + '"></label></div>' +
+                '<div class="form-group"><label>Period <input type="text" data-field="p' + (index + 1) + '_period" value="' + (data ? data.period : '') + '"></label></div>' +
+                '</div>' +
+                '<div class="form-group"><label>Overview <textarea data-field="p' + (index + 1) + '_overview">' + (data ? data.overview : '') + '</textarea></div>';
+        }
+
+        function educationTemplate(index, data) {
+            return '<div class="section-header" data-eindex="' + index + '">' +
+                '<span>Education ' + (index + 1) + '</span>' +
+                '<button type="button" class="btn-del" onclick="removeItem(this, \'education\', ' + index + ')">Delete</button>' +
+                '</div>' +
+                '<div class="form-group"><label>Period <input type="text" data-field="period_edu' + (index > 0 ? '_' + (index + 1) : '') + '" value="' + (data ? data.period : '') + '" placeholder="Period"></label></div>' +
+                '<div class="form-group"><label>School <input type="text" data-field="school' + (index > 0 ? '_' + (index + 1) : '') + '" value="' + (data ? data.school : '') + '" placeholder="School name"></label></div>' +
+                '<div class="form-group"><label>Major <input type="text" data-field="major' + (index > 0 ? '_' + (index + 1) : '') + '" value="' + (data ? data.major : '') + '" placeholder="Major"></label></div>';
+        }
+
+        // 全局函数供 onclick 调用
+        window.removeItem = function(btn, type, index) {
+            if (type === 'strengths') {
+                document.querySelector('[data-sindex="' + index + '"]').nextElementSibling.remove();
+                document.querySelector('[data-sindex="' + index + '"]').remove();
+            } else if (type === 'company') {
+                document.querySelector('[data-cindex="' + index + '"]').nextElementSibling.remove();
+                document.querySelector('[data-cindex="' + index + '"]').remove();
+            } else if (type === 'education') {
+                var el = document.querySelector('[data-eindex="' + index + '"]');
+                var next = el.nextElementSibling;
+                while (next && !next.classList.contains('section-header')) {
+                    var temp = next.nextElementSibling;
+                    next.remove();
+                    next = temp;
+                }
+                el.remove();
+            } else if (type === 'projects') {
+                var el = document.querySelector('[data-pindex="' + index + '"]');
+                var next = el.nextElementSibling;
+                while (next && !next.classList.contains('section-header')) {
+                    var temp = next.nextElementSibling;
+                    next.remove();
+                    next = temp;
+                }
+                el.remove();
+            }
+        };
+
+        async function loadData() {
+            try {
+                var res = await fetch(API_URL);
+                jsonData = await res.json();
+                fillAllForms();
+                renderDynamicSections();
+                updateLabels();
+            } catch (err) {
+                showStatus('Error: ' + err.message, 'error');
+            }
+        }
+
+        function renderDynamicSections() {
+            var data = jsonData[currentLang] || {};
+            var container;
+
+            // 强项
+            container = document.getElementById('strengths-container');
+            container.innerHTML = '';
+            for (var i = 1; i <= 4; i++) {
+                if (data['s' + i + '_title']) {
+                    container.innerHTML += strengthTemplate(i - 1, {title: data['s' + i + '_title'], desc: data['s' + i + '_desc']});
+                }
+            }
+
+            // 学历
+            container = document.getElementById('education-container');
+            container.innerHTML = '';
+            // 第一个学历
+            if (data['period_edu'] || data['school'] || data['major']) {
+                container.innerHTML += educationTemplate(0, {period: data['period_edu'], school: data['school'], major: data['major']});
+            }
+            // 额外的学历
+            for (var i = 2; i <= 3; i++) {
+                if (data['period_edu_' + i] || data['school_' + i] || data['major_' + i]) {
+                    container.innerHTML += educationTemplate(i - 1, {period: data['period_edu_' + i], school: data['school_' + i], major: data['major_' + i]});
+                }
+            }
+
+            // 公司
+            container = document.getElementById('company-container');
+            container.innerHTML = '';
+            for (var i = 1; i <= 5; i++) {
+                if (data['c' + i]) {
+                    container.innerHTML += companyTemplate(i - 1, {name: data['c' + i], period: data['c' + i + '_period']});
+                }
+            }
+
+            // 项目
+            container = document.getElementById('projects-container');
+            container.innerHTML = '';
+            for (var i = 1; i <= 10; i++) {
+                if (data['p' + i + '_title']) {
+                    container.innerHTML += projectTemplate(i - 1, {
+                        title: data['p' + i + '_title'],
+                        role: data['p' + i + '_role'],
+                        period: data['p' + i + '_period'],
+                        overview: data['p' + i + '_overview'] || ''
+                    });
+                }
+            }
+        }
+
+        function fillAllForms() {
+            var data = jsonData[currentLang] || {};
+            var fields = document.querySelectorAll('[data-field]:not([data-sindex]):not([data-cindex]):not([data-pindex])');
+            for (var i = 0; i < fields.length; i++) {
+                var field = fields[i];
+                var key = field.getAttribute('data-field');
+                field.value = data[key] || '';
+            }
+        }
+
+        function updateLabels() {
+            var data = jsonData[currentLang] || {};
+            var uiKeys = [
+                'ui_title', 'tab_basic', 'tab_strengths', 'tab_education', 'tab_company', 
+                'tab_projects', 'tab_skills', 'tab_pr', 'btn_save', 'btn_preview',
+                'lbl_name', 'lbl_title', 'lbl_summary', 'lbl_summary_title', 'lbl_summary_text', 'lbl_email',
+                'lbl_strengths_title', 'lbl_edu_title', 'lbl_period', 'lbl_school_label', 'lbl_school',
+                'lbl_company_title', 'lbl_company_name', 'lbl_proj_title', 'lbl_skill_title',
+                'lbl_skill_lang', 'lbl_skill_os', 'lbl_skill_db', 'lbl_skill_fw', 'lbl_skill_cloud', 'lbl_skill_tools', 'lbl_tech_env',
+                'lbl_pr_title', 'lbl_major'
+            ];
+            for (var k = 0; k < uiKeys.length; k++) {
+                var uk = uiKeys[k];
+                var uEls = document.querySelectorAll('[data-t="' + uk + '"]');
+                for (var m = 0; m < uEls.length; m++) {
+                    if (data[uk]) {
+                        var el = uEls[m];
+                        if (el.tagName === 'TITLE') {
+                            document.title = data[uk];
+                        } else {
+                            el.textContent = data[uk];
+                        }
+                    }
+                }
+            }
+        }
+
+        function showStatus(msg, type) {
+            var statusEl = document.getElementById('status');
+            statusEl.textContent = msg;
+            statusEl.className = 'status ' + type;
+        }
+
+        function collectData() {
+            var data = {};
+            var fields = document.querySelectorAll('[data-field]');
+            for (var i = 0; i < fields.length; i++) {
+                var field = fields[i];
+                if (field.value) {
+                    data[field.getAttribute('data-field')] = field.value;
+                }
+            }
+            return data;
+        }
+
+        var langBtns = document.querySelectorAll('.lang-btn');
+        for (var i = 0; i < langBtns.length; i++) {
+            langBtns[i].addEventListener('click', function() {
+                document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+                this.classList.add('active');
+                currentLang = this.getAttribute('data-lang');
+                fillAllForms();
+                renderDynamicSections();
+                updateLabels();
+            });
+        }
+
+        var tabBtns = document.querySelectorAll('.tab-btn');
+        for (var i = 0; i < tabBtns.length; i++) {
+            tabBtns[i].addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(function(t) { t.classList.remove('active'); });
+                document.querySelectorAll('.editor-section').forEach(function(s) { s.classList.remove('active'); });
+                this.classList.add('active');
+                document.querySelector('[data-section="' + this.getAttribute('data-tab') + '"]').classList.add('active');
+            });
+        }
+
+        document.getElementById('saveBtn').addEventListener('click', async function() {
+            var btn = document.getElementById('saveBtn');
+            btn.disabled = true;
+            try {
+                var formData = collectData();
+                jsonData[currentLang] = Object.assign({}, jsonData[currentLang], formData);
+                var res = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(jsonData)
+                });
+                if (res.ok) showStatus('Saved', 'success');
+                else throw new Error('Save failed');
+            } catch (err) {
+                showStatus('Error: ' + err.message, 'error');
+            } finally {
+                btn.disabled = false;
+            }
+        });
+
+        document.getElementById('previewBtn').addEventListener('click', function() {
+            window.open('index.html?lang=' + currentLang, '_blank');
+        });
+
+        // 添加按钮事件
+        document.getElementById('add-strength').addEventListener('click', function() {
+            var container = document.getElementById('strengths-container');
+            var count = container.querySelectorAll('.section-header').length;
+            if (count < 4) {
+                container.innerHTML += strengthTemplate(count, null);
+            }
+        });
+
+        document.getElementById('add-education').addEventListener('click', function() {
+            var container = document.getElementById('education-container');
+            var count = container.querySelectorAll('.section-header').length;
+            if (count < 3) {
+                container.innerHTML += educationTemplate(count, null);
+            }
+        });
+
+        document.getElementById('add-company').addEventListener('click', function() {
+            var container = document.getElementById('company-container');
+            var count = container.querySelectorAll('.section-header').length;
+            if (count < 5) {
+                container.innerHTML += companyTemplate(count, null);
+            }
+        });
+
+        document.getElementById('add-project').addEventListener('click', function() {
+            var container = document.getElementById('projects-container');
+            var count = container.querySelectorAll('.section-header').length;
+            if (count < 10) {
+                container.innerHTML += projectTemplate(count, null);
+            }
+        });
+
+        loadData();
+    })();
+    </script>
+</body>
+</html>
