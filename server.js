@@ -54,7 +54,8 @@ const server = http.createServer((req, res) => {
         return;
     }
 
-    let filePath = req.url === '/' ? '/admin.html' : req.url;
+    let urlPath = req.url.split('?')[0];
+    let filePath = urlPath === '/' ? '/editor.html' : urlPath;
     const fullPath = path.join(__dirname, filePath);
 
     if (!fullPath.startsWith(__dirname)) {
