@@ -98,21 +98,11 @@
         <!-- 学历 -->
         <div class="editor-section" data-section="education">
             <div class="form-group">
-                <label data-t="lbl_edu_title">Education</label>
+                <label data-t="lbl_edu_title">Education Title</label>
                 <input type="text" data-field="edu_title">
             </div>
-            <div class="form-group">
-                <label data-t="lbl_period">Period</label>
-                <input type="text" data-field="period_edu">
-            </div>
-            <div class="form-group">
-                <label data-t="lbl_school">School</label>
-                <input type="text" data-field="school" placeholder="School name">
-            </div>
-            <div class="form-group">
-                <label data-t="lbl_major">Major</label>
-                <input type="text" data-field="major" placeholder="Major/Subject">
-            </div>
+            <div id="education-container"></div>
+            <button class="btn-add" id="add-education">+ Add Education</button>
         </div>
 
         <!-- 公司经历 -->
@@ -146,11 +136,11 @@
                 <input type="text" data-field="skill_title">
             </div>
             <div class="form-group">
-                <label data-t="lbl_skill_lang">Languages</label>
+                <label data-t="lbl_skill_lang">Programming Languages</label>
                 <input type="text" data-field="skill_lang">
             </div>
             <div class="form-group">
-                <label data-t="lbl_skill_os">OS</label>
+                <label data-t="lbl_skill_os">Operating Systems</label>
                 <input type="text" data-field="skill_os">
             </div>
             <div class="form-group">
@@ -158,19 +148,27 @@
                 <input type="text" data-field="skill_db">
             </div>
             <div class="form-group">
-                <label data-t="lbl_skill_fw">Frameworks</label>
+                <label>Middleware/Containers</label>
+                <input type="text" data-field="skill_middleware">
+            </div>
+            <div class="form-group">
+                <label data-t="lbl_skill_fw">Frameworks/Platforms</label>
                 <input type="text" data-field="skill_fw">
             </div>
             <div class="form-group">
-                <label data-t="lbl_skill_cloud">Cloud</label>
+                <label data-t="lbl_skill_cloud">Cloud Services</label>
                 <input type="text" data-field="skill_cloud">
             </div>
             <div class="form-group">
-                <label data-t="lbl_skill_tools">Tools</label>
+                <label data-t="lbl_skill_tools">Development Tools</label>
                 <input type="text" data-field="skill_tools">
             </div>
             <div class="form-group">
-                <label data-t="lbl_tech_env">Tech Env</label>
+                <label>Communication Tools</label>
+                <input type="text" data-field="skill_comm">
+            </div>
+            <div class="form-group">
+                <label data-t="lbl_tech_env">Tech Env Label</label>
                 <input type="text" data-field="tech_env">
             </div>
         </div>
@@ -235,7 +233,7 @@
                 '</div>';
         }
 
-        function projectTemplate(index, data) {
+function projectTemplate(index, data) {
             return '<div class="section-header" data-pindex="' + index + '">' +
                 '<span>Project ' + (index + 1) + '</span>' +
                 '<button type="button" class="btn-del" onclick="removeItem(this, \'projects\', ' + index + ')">Delete</button>' +
@@ -245,7 +243,17 @@
                 '<div class="form-group"><label>Role <input type="text" data-field="p' + (index + 1) + '_role" value="' + (data ? data.role : '') + '"></label></div>' +
                 '<div class="form-group"><label>Period <input type="text" data-field="p' + (index + 1) + '_period" value="' + (data ? data.period : '') + '"></label></div>' +
                 '</div>' +
-                '<div class="form-group"><label>Overview <textarea data-field="p' + (index + 1) + '_overview">' + (data ? data.overview : '') + '</textarea></label></div>';
+                '<div class="form-group"><label>Overview <textarea data-field="p' + (index + 1) + '_overview">' + (data ? data.overview : '') + '</textarea></div>';
+        }
+
+        function educationTemplate(index, data) {
+            return '<div class="section-header" data-eindex="' + index + '">' +
+                '<span>Education ' + (index + 1) + '</span>' +
+                '<button type="button" class="btn-del" onclick="removeItem(this, \'education\', ' + index + ')">Delete</button>' +
+                '</div>' +
+                '<div class="form-group"><label>Period <input type="text" data-field="period_edu' + (index > 0 ? '_' + (index + 1) : '') + '" value="' + (data ? data.period : '') + '" placeholder="Period"></label></div>' +
+                '<div class="form-group"><label>School <input type="text" data-field="school' + (index > 0 ? '_' + (index + 1) : '') + '" value="' + (data ? data.school : '') + '" placeholder="School name"></label></div>' +
+                '<div class="form-group"><label>Major <input type="text" data-field="major' + (index > 0 ? '_' + (index + 1) : '') + '" value="' + (data ? data.major : '') + '" placeholder="Major"></label></div>';
         }
 
         // 全局函数供 onclick 调用
@@ -256,6 +264,15 @@
             } else if (type === 'company') {
                 document.querySelector('[data-cindex="' + index + '"]').nextElementSibling.remove();
                 document.querySelector('[data-cindex="' + index + '"]').remove();
+            } else if (type === 'education') {
+                var el = document.querySelector('[data-eindex="' + index + '"]');
+                var next = el.nextElementSibling;
+                while (next && !next.classList.contains('section-header')) {
+                    var temp = next.nextElementSibling;
+                    next.remove();
+                    next = temp;
+                }
+                el.remove();
             } else if (type === 'projects') {
                 var el = document.querySelector('[data-pindex="' + index + '"]');
                 var next = el.nextElementSibling;
@@ -290,6 +307,20 @@
             for (var i = 1; i <= 4; i++) {
                 if (data['s' + i + '_title']) {
                     container.innerHTML += strengthTemplate(i - 1, {title: data['s' + i + '_title'], desc: data['s' + i + '_desc']});
+                }
+            }
+
+            // 学历
+            container = document.getElementById('education-container');
+            container.innerHTML = '';
+            // 第一个学历
+            if (data['period_edu'] || data['school'] || data['major']) {
+                container.innerHTML += educationTemplate(0, {period: data['period_edu'], school: data['school'], major: data['major']});
+            }
+            // 额外的学历
+            for (var i = 2; i <= 3; i++) {
+                if (data['period_edu_' + i] || data['school_' + i] || data['major_' + i]) {
+                    container.innerHTML += educationTemplate(i - 1, {period: data['period_edu_' + i], school: data['school_' + i], major: data['major_' + i]});
                 }
             }
 
@@ -424,6 +455,14 @@
             var count = container.querySelectorAll('.section-header').length;
             if (count < 4) {
                 container.innerHTML += strengthTemplate(count, null);
+            }
+        });
+
+        document.getElementById('add-education').addEventListener('click', function() {
+            var container = document.getElementById('education-container');
+            var count = container.querySelectorAll('.section-header').length;
+            if (count < 3) {
+                container.innerHTML += educationTemplate(count, null);
             }
         });
 

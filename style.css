@@ -114,6 +114,13 @@ h2 span { border-bottom: 3px solid var(--accent); padding-bottom: 0.5rem; }
     padding: 0.2rem 0.6rem; background: rgba(59,130,246,0.15);
     border-radius: 9999px; font-size: 0.75rem;
 }
+.skills-list { display: grid; gap: 1.5rem; }
+.skill-row { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; }
+.skill-row h3 { font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--accent2); }
+.skill-items { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.skill-items .skill-tag {
+    padding: 0.3rem 0.75rem; font-size: 0.8rem;
+}
 .pr-list { display: grid; gap: 1rem; }
 .pr-item {
     background: var(--card); border: 1px solid var(--border); border-radius: 1rem;
