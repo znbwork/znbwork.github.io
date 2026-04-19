@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简历编辑器</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; padding: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background: #fff; padding: 16px 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        h1 { font-size: 24px; color: #333; }
+        .lang-bar { display: flex; gap: 8px; }
+        .lang-btn { padding: 8px 16px; border: 1px solid #ddd; background: #fff; cursor: pointer; border-radius: 4px; }
+        .lang-btn.active { background: #007bff; color: #fff; border-color: #007bff; }
+        .tabs { display: flex; gap: 4px; margin-bottom: 16px; background: #fff; padding: 12px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow-x: auto; flex-wrap: wrap; }
+        .tab-btn { padding: 10px 20px; border: none; background: transparent; cursor: pointer; border-radius: 4px; white-space: nowrap; }
+        .tab-btn.active { background: #007bff; color: #fff; }
+        .editor-section { display: none; background: #fff; border-radius: 8px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .editor-section.active { display: block; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 6px; color: #333; font-size: 14px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+        .form-group textarea { min-height: 60px; resize: vertical; }
+        .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+        .section-header { font-size: 16px; font-weight: 600; margin: 20px 0 12px; padding-bottom: 8px; border-bottom: 2px solid #007bff; color: #333; }
+        .section-header:first-of-type { margin-top: 0; }
+        .controls { display: flex; gap: 12px; margin-top: 24px; padding-top: 20px; border-top: 1px solid #eee; }
+        .btn { padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; }
+        .btn-primary { background: #007bff; color: #fff; }
+        .btn-success { background: #28a745; color: #fff; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .status { margin-top: 12px; font-size: 14px; }
+        .status.success { color: #28a745; }
+        .status.error { color: #dc3545; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>简历内容编辑</h1>
+        <div class="lang-bar">
+            <button class="lang-btn" data-lang="zh">中文</button>
+            <button class="lang-btn active" data-lang="ja">日本語</button>
+            <button class="lang-btn" data-lang="en">English</button>
+        </div>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="basic">基本信息</button>
+        <button class="tab-btn" data-tab="strengths">强项</button>
+        <button class="tab-btn" data-tab="education">学历</button>
+        <button class="tab-btn" data-tab="company">公司经历</button>
+        <button class="tab-btn" data-tab="projects">项目经验</button>
+        <button class="tab-btn" data-tab="skills">技术技能</button>
+        <button class="tab-btn" data-tab="pr">自我PR</button>
+    </div>
+
+    <div class="editor">
+        <!-- 基本信息 -->
+        <div class="editor-section active" data-section="basic">
+            <div class="form-group">
+                <label>姓名</label>
+                <input type="text" data-field="name">
+            </div>
+            <div class="form-group">
+                <label>职位标题</label>
+                <input type="text" data-field="title">
+            </div>
+            <div class="form-group">
+                <label>个人简介</label>
+                <textarea data-field="summary"></textarea>
+            </div>
+            <div class="form-group">
+                <label>经历概要标题</label>
+                <input type="text" data-field="summary_title">
+            </div>
+            <div class="form-group">
+                <label>经历概要正文</label>
+                <textarea data-field="summary_text"></textarea>
+            </div>
+            <div class="form-group">
+                <label>邮件标签</label>
+                <input type="text" data-field="email">
+            </div>
+        </div>
+
+        <!-- 强项 -->
+        <div class="editor-section" data-section="strengths">
+            <div class="form-group">
+                <label>强项标题</label>
+                <input type="text" data-field="strengths_title">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>强项1标题</label>
+                    <input type="text" data-field="s1_title">
+                </div>
+                <div class="form-group">
+                    <label>强项1描述</label>
+                    <input type="text" data-field="s1_desc">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>强项2标题</label>
+                    <input type="text" data-field="s2_title">
+                </div>
+                <div class="form-group">
+                    <label>强项2描述</label>
+                    <input type="text" data-field="s2_desc">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>强项3标题</label>
+                    <input type="text" data-field="s3_title">
+                </div>
+                <div class="form-group">
+                    <label>强项3描述</label>
+                    <input type="text" data-field="s3_desc">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>强项4标题</label>
+                    <input type="text" data-field="s4_title">
+                </div>
+                <div class="form-group">
+                    <label>强项4描述</label>
+                    <input type="text" data-field="s4_desc">
+                </div>
+            </div>
+        </div>
+
+        <!-- 学历 -->
+        <div class="editor-section" data-section="education">
+            <div class="form-group">
+                <label>学历标题</label>
+                <input type="text" data-field="edu_title">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>时间</label>
+                    <input type="text" data-field="period">
+                </div>
+                <div class="form-group">
+                    <label>学校</label>
+                    <input type="text" data-field="school_label">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>学校名称</label>
+                <input type="text" data-field="school">
+            </div>
+        </div>
+
+        <!-- 公司经历 -->
+        <div class="editor-section" data-section="company">
+            <div class="form-group">
+                <label>公司历史标题</label>
+                <input type="text" data-field="company_title">
+            </div>
+            <div class="form-group">
+                <label>公司列标题</label>
+                <input type="text" data-field="company_name">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>公司1名称</label>
+                    <input type="text" data-field="c1">
+                </div>
+                <div class="form-group">
+                    <label>公司1时间</label>
+                    <input type="text" data-field="c1_period">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>公司2名称</label>
+                    <input type="text" data-field="c2">
+                </div>
+                <div class="form-group">
+                    <label>公司2时间</label>
+                    <input type="text" data-field="c2_period">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>公司3名称</label>
+                    <input type="text" data-field="c3">
+                </div>
+                <div class="form-group">
+                    <label>公司3时间</label>
+                    <input type="text" data-field="c3_period">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>公司4名称</label>
+                    <input type="text" data-field="c4">
+                </div>
+                <div class="form-group">
+                    <label>公司4时间</label>
+                    <input type="text" data-field="c4_period">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>公司5名称</label>
+                    <input type="text" data-field="c5">
+                </div>
+                <div class="form-group">
+                    <label>公司5时间</label>
+                    <input type="text" data-field="c5_period">
+                </div>
+            </div>
+        </div>
+
+        <!-- 项目经验 -->
+        <div class="editor-section" data-section="projects">
+            <div class="form-group">
+                <label>项目经验标题</label>
+                <input type="text" data-field="proj_title">
+            </div>
+
+            <div class="section-header">项目1</div>
+            <div class="form-group">
+                <label>项目名称</label>
+                <input type="text" data-field="p1_title">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>角色</label>
+                    <input type="text" data-field="p1_role">
+                </div>
+                <div class="form-group">
+                    <label>时间</label>
+                    <input type="text" data-field="p1_period">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>概述</label>
+                <textarea data-field="p1_overview"></textarea>
+            </div>
+            <div class="form-group">
+                <label>职责标题</label>
+                <input type="text" data-field="p1_duties_title">
+            </div>
+            <div class="form-group">
+                <label>职责1</label>
+                <input type="text" data-field="p1_d1">
+            </div>
+            <div class="form-group">
+                <label>职责2</label>
+                <input type="text" data-field="p1_d2">
+            </div>
+            <div class="form-group">
+                <label>职责3</label>
+                <input type="text" data-field="p1_d3">
+            </div>
+            <div class="form-group">
+                <label>职责4</label>
+                <input type="text" data-field="p1_d4">
+            </div>
+
+            <div class="section-header">项目2</div>
+            <div class="form-group">
+                <label>项目名称</label>
+                <input type="text" data-field="p2_title">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>角色</label>
+                    <input type="text" data-field="p2_role">
+                </div>
+                <div class="form-group">
+                    <label>时间</label>
+                    <input type="text" data-field="p2_period">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>概述</label>
+                <textarea data-field="p2_overview"></textarea>
+            </div>
+            <div class="form-group">
+                <label>职责1</label>
+                <input type="text" data-field="p2_d1">
+            </div>
+            <div class="form-group">
+                <label>职责2</label>
+                <input type="text" data-field="p2_d2">
+            </div>
+            <div class="form-group">
+                <label>职责3</label>
+                <input type="text" data-field="p2_d3">
+            </div>
+            <div class="form-group">
+                <label>职责4</label>
+                <input type="text" data-field="p2_d4">
+            </div>
+        </div>
+
+        <!-- 技术技能 -->
+        <div class="editor-section" data-section="skills">
+            <div class="form-group">
+                <label>技术技能标题</label>
+                <input type="text" data-field="skill_title">
+            </div>
+            <div class="form-group">
+                <label>编程语言</label>
+                <input type="text" data-field="skill_lang">
+            </div>
+            <div class="form-group">
+                <label>操作系统</label>
+                <input type="text" data-field="skill_os">
+            </div>
+            <div class="form-group">
+                <label>数据库</label>
+                <input type="text" data-field="skill_db">
+            </div>
+            <div class="form-group">
+                <label>框架</label>
+                <input type="text" data-field="skill_fw">
+            </div>
+            <div class="form-group">
+                <label>云服务</label>
+                <input type="text" data-field="skill_cloud">
+            </div>
+            <div class="form-group">
+                <label>开发工具</label>
+                <input type="text" data-field="skill_tools">
+            </div>
+            <div class="form-group">
+                <label>技术环境标签</label>
+                <input type="text" data-field="tech_env">
+            </div>
+        </div>
+
+        <!-- 自我PR -->
+        <div class="editor-section" data-section="pr">
+            <div class="form-group">
+                <label>自我PR标题</label>
+                <input type="text" data-field="pr_title">
+            </div>
+            <div class="form-group">
+                <label>PR内容1</label>
+                <textarea data-field="pr1"></textarea>
+            </div>
+            <div class="form-group">
+                <label>PR内容2</label>
+                <textarea data-field="pr2"></textarea>
+            </div>
+            <div class="form-group">
+                <label>PR内容3</label>
+                <textarea data-field="pr3"></textarea>
+            </div>
+            <div class="form-group">
+                <label>PR内容4</label>
+                <textarea data-field="pr4"></textarea>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="saveBtn" class="btn btn-primary">保存更改</button>
+            <button id="previewBtn" class="btn btn-success">预览</button>
+        </div>
+        <div id="status" class="status"></div>
+    </div>
+
+    <script>
+        (function() {
+            const API_URL = `http://localhost:${location.port}/api/data`;
+            let currentLang = 'ja';
+            let jsonData = {};
+
+            // 加载数据
+            async function loadData() {
+                try {
+                    const res = await fetch(API_URL);
+                    jsonData = await res.json();
+                    fillAllForms();
+                } catch (err) {
+                    showStatus('加载失败: ' + err.message, 'error');
+                }
+            }
+
+            // 填充所有表单
+            function fillAllForms() {
+                const data = jsonData[currentLang] || {};
+                const fields = document.querySelectorAll('[data-field]');
+                fields.forEach(function(field) {
+                    const key = field.getAttribute('data-field');
+                    if (field.tagName === 'TEXTAREA') {
+                        field.value = data[key] || '';
+                    } else {
+                        field.value = data[key] || '';
+                    }
+                });
+            }
+
+            // 显示状态
+            function showStatus(msg, type) {
+                const statusEl = document.getElementById('status');
+                statusEl.textContent = msg;
+                statusEl.className = 'status ' + type;
+            }
+
+            // 收集表单数据
+            function collectData() {
+                const data = {};
+                const fields = document.querySelectorAll('[data-field]');
+                fields.forEach(function(field) {
+                    if (field.value) {
+                        data[field.getAttribute('data-field')] = field.value;
+                    }
+                });
+                return data;
+            }
+
+            // 语言切换
+            document.querySelectorAll('.lang-btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.lang-btn').forEach(function(b) {
+                        b.classList.remove('active');
+                    });
+                    btn.classList.add('active');
+                    currentLang = btn.getAttribute('data-lang');
+                    fillAllForms();
+                });
+            });
+
+            // 标签切换
+            document.querySelectorAll('.tab-btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.tab-btn').forEach(function(t) {
+                        t.classList.remove('active');
+                    });
+                    document.querySelectorAll('.editor-section').forEach(function(s) {
+                        s.classList.remove('active');
+                    });
+                    btn.classList.add('active');
+                    document.querySelector('[data-section="' + btn.getAttribute('data-tab') + '"]').classList.add('active');
+                });
+            });
+
+            // 保存
+            document.getElementById('saveBtn').addEventListener('click', async function() {
+                const btn = document.getElementById('saveBtn');
+                btn.disabled = true;
+
+                try {
+                    const formData = collectData();
+                    jsonData[currentLang] = Object.assign({}, jsonData[currentLang], formData);
+
+                    const res = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(jsonData)
+                    });
+
+                    if (res.ok) {
+                        showStatus('保存成功', 'success');
+                    } else {
+                        throw new Error('保存失败');
+                    }
+                } catch (err) {
+                    showStatus('保存失败: ' + err.message, 'error');
+                } finally {
+                    btn.disabled = false;
+                }
+            });
+
+            // 预览
+            document.getElementById('previewBtn').addEventListener('click', function() {
+                window.open('index.html?lang=' + currentLang, '_blank');
+            });
+
+            // 初始化
+            loadData();
+        })();
+    </script>
+</body>
+</html>
