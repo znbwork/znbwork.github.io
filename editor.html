@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-t="ui_title">简历编辑器</title>
+    <title data-t="ui_title">Resume Editor</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; padding: 20px; }
@@ -22,8 +22,10 @@
         .form-group input, .form-group textarea { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
         .form-group textarea { min-height: 60px; resize: vertical; }
         .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
-        .section-header { font-size: 16px; font-weight: 600; margin: 20px 0 12px; padding-bottom: 8px; border-bottom: 2px solid #007bff; color: #333; }
+        .section-header { display: flex; justify-content: space-between; align-items: center; font-size: 16px; font-weight: 600; margin: 20px 0 12px; padding-bottom: 8px; border-bottom: 2px solid #007bff; color: #333; }
         .section-header:first-of-type { margin-top: 0; }
+        .section-header .btn-del { background: #dc3545; color: #fff; padding: 4px 12px; font-size: 12px; border: none; border-radius: 4px; cursor: pointer; }
+        .btn-add { background: #28a745; color: #fff; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; margin-top: 12px; }
         .controls { display: flex; gap: 12px; margin-top: 24px; padding-top: 20px; border-top: 1px solid #eee; }
         .btn { padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; }
         .btn-primary { background: #007bff; color: #fff; }
@@ -36,7 +38,7 @@
 </head>
 <body>
     <div class="header">
-        <h1 data-t="ui_title">简历内容编辑</h1>
+        <h1 data-t="ui_title">Resume Editor</h1>
         <div class="lang-bar">
             <button class="lang-btn" data-lang="zh">中文</button>
             <button class="lang-btn active" data-lang="ja">日本語</button>
@@ -45,13 +47,13 @@
     </div>
 
     <div class="tabs">
-        <button class="tab-btn active" data-tab="basic" data-t="tab_basic">基本信息</button>
-        <button class="tab-btn" data-tab="strengths" data-t="tab_strengths">强项</button>
-        <button class="tab-btn" data-tab="education" data-t="tab_education">学历</button>
-        <button class="tab-btn" data-tab="company" data-t="tab_company">公司经历</button>
-        <button class="tab-btn" data-tab="projects" data-t="tab_projects">项目经验</button>
-        <button class="tab-btn" data-tab="skills" data-t="tab_skills">技术技能</button>
-        <button class="tab-btn" data-tab="pr" data-t="tab_pr">自我PR</button>
+        <button class="tab-btn active" data-tab="basic" data-t="tab_basic">Basic Info</button>
+        <button class="tab-btn" data-tab="strengths" data-t="tab_strengths">Strengths</button>
+        <button class="tab-btn" data-tab="education" data-t="tab_education">Education</button>
+        <button class="tab-btn" data-tab="company" data-t="tab_company">Company</button>
+        <button class="tab-btn" data-tab="projects" data-t="tab_projects">Projects</button>
+        <button class="tab-btn" data-tab="skills" data-t="tab_skills">Skills</button>
+        <button class="tab-btn" data-tab="pr" data-t="tab_pr">Self PR</button>
     </div>
 
     <div class="editor">
@@ -89,46 +91,8 @@
                 <label data-t="lbl_strengths_title">Strengths Title</label>
                 <input type="text" data-field="strengths_title">
             </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Strength 1 Title</label>
-                    <input type="text" data-field="s1_title">
-                </div>
-                <div class="form-group">
-                    <label>Strength 1 Desc</label>
-                    <input type="text" data-field="s1_desc">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Strength 2 Title</label>
-                    <input type="text" data-field="s2_title">
-                </div>
-                <div class="form-group">
-                    <label>Strength 2 Desc</label>
-                    <input type="text" data-field="s2_desc">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Strength 3 Title</label>
-                    <input type="text" data-field="s3_title">
-                </div>
-                <div class="form-group">
-                    <label>Strength 3 Desc</label>
-                    <input type="text" data-field="s3_desc">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Strength 4 Title</label>
-                    <input type="text" data-field="s4_title">
-                </div>
-                <div class="form-group">
-                    <label>Strength 4 Desc</label>
-                    <input type="text" data-field="s4_desc">
-                </div>
-            </div>
+            <div id="strengths-container"></div>
+            <button class="btn-add" id="add-strength">+ Add Strength</button>
         </div>
 
         <!-- 学历 -->
@@ -137,19 +101,17 @@
                 <label data-t="lbl_edu_title">Education</label>
                 <input type="text" data-field="edu_title">
             </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label data-t="lbl_period">Period</label>
-                    <input type="text" data-field="period">
-                </div>
-                <div class="form-group">
-                    <label data-t="lbl_school_label">School</label>
-                    <input type="text" data-field="school_label">
-                </div>
+            <div class="form-group">
+                <label data-t="lbl_period">Period</label>
+                <input type="text" data-field="period_edu">
             </div>
             <div class="form-group">
-                <label data-t="lbl_school">School Name</label>
-                <input type="text" data-field="school">
+                <label data-t="lbl_school">School</label>
+                <input type="text" data-field="school" placeholder="School name">
+            </div>
+            <div class="form-group">
+                <label data-t="lbl_major">Major</label>
+                <input type="text" data-field="major" placeholder="Major/Subject">
             </div>
         </div>
 
@@ -163,56 +125,8 @@
                 <label data-t="lbl_company_name">Company Name</label>
                 <input type="text" data-field="company_name">
             </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Company 1</label>
-                    <input type="text" data-field="c1">
-                </div>
-                <div class="form-group">
-                    <label>Period 1</label>
-                    <input type="text" data-field="c1_period">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Company 2</label>
-                    <input type="text" data-field="c2">
-                </div>
-                <div class="form-group">
-                    <label>Period 2</label>
-                    <input type="text" data-field="c2_period">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Company 3</label>
-                    <input type="text" data-field="c3">
-                </div>
-                <div class="form-group">
-                    <label>Period 3</label>
-                    <input type="text" data-field="c3_period">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Company 4</label>
-                    <input type="text" data-field="c4">
-                </div>
-                <div class="form-group">
-                    <label>Period 4</label>
-                    <input type="text" data-field="c4_period">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Company 5</label>
-                    <input type="text" data-field="c5">
-                </div>
-                <div class="form-group">
-                    <label>Period 5</label>
-                    <input type="text" data-field="c5_period">
-                </div>
-            </div>
+            <div id="company-container"></div>
+            <button class="btn-add" id="add-company">+ Add Company</button>
         </div>
 
         <!-- 项目经验 -->
@@ -221,82 +135,8 @@
                 <label data-t="lbl_proj_title">Projects</label>
                 <input type="text" data-field="proj_title">
             </div>
-
-            <div class="section-header">Project 1</div>
-            <div class="form-group">
-                <label>Project Name</label>
-                <input type="text" data-field="p1_title">
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Role</label>
-                    <input type="text" data-field="p1_role">
-                </div>
-                <div class="form-group">
-                    <label>Period</label>
-                    <input type="text" data-field="p1_period">
-                </div>
-            </div>
-            <div class="form-group">
-                <label>Overview</label>
-                <textarea data-field="p1_overview"></textarea>
-            </div>
-            <div class="form-group">
-                <label>Duties Title</label>
-                <input type="text" data-field="p1_duties_title">
-            </div>
-            <div class="form-group">
-                <label>Duty 1</label>
-                <input type="text" data-field="p1_d1">
-            </div>
-            <div class="form-group">
-                <label>Duty 2</label>
-                <input type="text" data-field="p1_d2">
-            </div>
-            <div class="form-group">
-                <label>Duty 3</label>
-                <input type="text" data-field="p1_d3">
-            </div>
-            <div class="form-group">
-                <label>Duty 4</label>
-                <input type="text" data-field="p1_d4">
-            </div>
-
-            <div class="section-header">Project 2</div>
-            <div class="form-group">
-                <label>Project Name</label>
-                <input type="text" data-field="p2_title">
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Role</label>
-                    <input type="text" data-field="p2_role">
-                </div>
-                <div class="form-group">
-                    <label>Period</label>
-                    <input type="text" data-field="p2_period">
-                </div>
-            </div>
-            <div class="form-group">
-                <label>Overview</label>
-                <textarea data-field="p2_overview"></textarea>
-            </div>
-            <div class="form-group">
-                <label>Duty 1</label>
-                <input type="text" data-field="p2_d1">
-            </div>
-            <div class="form-group">
-                <label>Duty 2</label>
-                <input type="text" data-field="p2_d2">
-            </div>
-            <div class="form-group">
-                <label>Duty 3</label>
-                <input type="text" data-field="p2_d3">
-            </div>
-            <div class="form-group">
-                <label>Duty 4</label>
-                <input type="text" data-field="p2_d4">
-            </div>
+            <div id="projects-container"></div>
+            <button class="btn-add" id="add-project">+ Add Project</button>
         </div>
 
         <!-- 技术技能 -->
@@ -360,159 +200,251 @@
         </div>
 
         <div class="controls">
-            <button id="saveBtn" class="btn btn-primary" data-t="btn_save">保存更改</button>
-            <button id="previewBtn" class="btn btn-success" data-t="btn_preview">预览</button>
+            <button id="saveBtn" class="btn btn-primary" data-t="btn_save">Save</button>
+            <button id="previewBtn" class="btn btn-success" data-t="btn_preview">Preview</button>
         </div>
         <div id="status" class="status"></div>
     </div>
 
     <script>
-        (function() {
-            var API_URL = 'http://localhost:' + location.port + '/api/data';
-            var currentLang = 'ja';
-            var jsonData = {};
-            var labelMap = {};
+    (function() {
+        var API_URL = 'http://localhost:' + location.port + '/api/data';
+        var currentLang = 'ja';
+        var jsonData = {};
 
-            async function loadData() {
-                try {
-                    var res = await fetch(API_URL);
-                    jsonData = await res.json();
-                    fillAllForms();
-                    updateLabels();
-                    console.log('Initial lang:', currentLang, 'Title:', jsonData[currentLang] && jsonData[currentLang].ui_title);
-                } catch (err) {
-                    showStatus('加载失败: ' + err.message, 'error');
+        // 模板函数
+        function strengthTemplate(index, data) {
+            return '<div class="section-header" data-sindex="' + index + '">' +
+                '<span>Strength ' + (index + 1) + '</span>' +
+                '<button type="button" class="btn-del" onclick="removeItem(this, \'strengths\', ' + index + ')">Delete</button>' +
+                '</div>' +
+                '<div class="form-row">' +
+                '<div class="form-group"><label>Title <input type="text" data-field="s' + (index + 1) + '_title" value="' + (data ? data.title : '') + '"></label></div>' +
+                '<div class="form-group"><label>Description <input type="text" data-field="s' + (index + 1) + '_desc" value="' + (data ? data.desc : '') + '"></label></div>' +
+                '</div>';
+        }
+
+        function companyTemplate(index, data) {
+            return '<div class="section-header" data-cindex="' + index + '">' +
+                '<span>Company ' + (index + 1) + '</span>' +
+                '<button type="button" class="btn-del" onclick="removeItem(this, \'company\', ' + index + ')">Delete</button>' +
+                '</div>' +
+                '<div class="form-row">' +
+                '<div class="form-group"><label>Name <input type="text" data-field="c' + (index + 1) + '" value="' + (data ? data.name : '') + '"></label></div>' +
+                '<div class="form-group"><label>Period <input type="text" data-field="c' + (index + 1) + '_period" value="' + (data ? data.period : '') + '"></label></div>' +
+                '</div>';
+        }
+
+        function projectTemplate(index, data) {
+            return '<div class="section-header" data-pindex="' + index + '">' +
+                '<span>Project ' + (index + 1) + '</span>' +
+                '<button type="button" class="btn-del" onclick="removeItem(this, \'projects\', ' + index + ')">Delete</button>' +
+                '</div>' +
+                '<div class="form-group"><label>Title <input type="text" data-field="p' + (index + 1) + '_title" value="' + (data ? data.title : '') + '"></label></div>' +
+                '<div class="form-row">' +
+                '<div class="form-group"><label>Role <input type="text" data-field="p' + (index + 1) + '_role" value="' + (data ? data.role : '') + '"></label></div>' +
+                '<div class="form-group"><label>Period <input type="text" data-field="p' + (index + 1) + '_period" value="' + (data ? data.period : '') + '"></label></div>' +
+                '</div>' +
+                '<div class="form-group"><label>Overview <textarea data-field="p' + (index + 1) + '_overview">' + (data ? data.overview : '') + '</textarea></label></div>';
+        }
+
+        // 全局函数供 onclick 调用
+        window.removeItem = function(btn, type, index) {
+            if (type === 'strengths') {
+                document.querySelector('[data-sindex="' + index + '"]').nextElementSibling.remove();
+                document.querySelector('[data-sindex="' + index + '"]').remove();
+            } else if (type === 'company') {
+                document.querySelector('[data-cindex="' + index + '"]').nextElementSibling.remove();
+                document.querySelector('[data-cindex="' + index + '"]').remove();
+            } else if (type === 'projects') {
+                var el = document.querySelector('[data-pindex="' + index + '"]');
+                var next = el.nextElementSibling;
+                while (next && !next.classList.contains('section-header')) {
+                    var temp = next.nextElementSibling;
+                    next.remove();
+                    next = temp;
+                }
+                el.remove();
+            }
+        };
+
+        async function loadData() {
+            try {
+                var res = await fetch(API_URL);
+                jsonData = await res.json();
+                fillAllForms();
+                renderDynamicSections();
+                updateLabels();
+            } catch (err) {
+                showStatus('Error: ' + err.message, 'error');
+            }
+        }
+
+        function renderDynamicSections() {
+            var data = jsonData[currentLang] || {};
+            var container;
+
+            // 强项
+            container = document.getElementById('strengths-container');
+            container.innerHTML = '';
+            for (var i = 1; i <= 4; i++) {
+                if (data['s' + i + '_title']) {
+                    container.innerHTML += strengthTemplate(i - 1, {title: data['s' + i + '_title'], desc: data['s' + i + '_desc']});
                 }
             }
 
-            function fillAllForms() {
-                var data = jsonData[currentLang] || {};
-                var fields = document.querySelectorAll('[data-field]');
-                for (var i = 0; i < fields.length; i++) {
-                    var field = fields[i];
-                    var key = field.getAttribute('data-field');
-                    field.value = data[key] || '';
+            // 公司
+            container = document.getElementById('company-container');
+            container.innerHTML = '';
+            for (var i = 1; i <= 5; i++) {
+                if (data['c' + i]) {
+                    container.innerHTML += companyTemplate(i - 1, {name: data['c' + i], period: data['c' + i + '_period']});
                 }
             }
 
-            function updateLabels() {
-                var data = jsonData[currentLang] || {};
+            // 项目
+            container = document.getElementById('projects-container');
+            container.innerHTML = '';
+            for (var i = 1; i <= 10; i++) {
+                if (data['p' + i + '_title']) {
+                    container.innerHTML += projectTemplate(i - 1, {
+                        title: data['p' + i + '_title'],
+                        role: data['p' + i + '_role'],
+                        period: data['p' + i + '_period'],
+                        overview: data['p' + i + '_overview'] || ''
+                    });
+                }
+            }
+        }
 
-                var uiKeys = [
-                    'ui_title', 'tab_basic', 'tab_strengths', 'tab_education', 'tab_company', 
-                    'tab_projects', 'tab_skills', 'tab_pr', 'btn_save', 'btn_preview',
-                    'lbl_name', 'lbl_title', 'lbl_summary', 'lbl_summary_title', 'lbl_summary_text', 'lbl_email',
-                    'lbl_strengths_title', 'lbl_edu_title', 'lbl_period', 'lbl_school_label', 'lbl_school',
-                    'lbl_company_title', 'lbl_company_name', 'lbl_proj_title', 'lbl_skill_title',
-                    'lbl_skill_lang', 'lbl_skill_os', 'lbl_skill_db', 'lbl_skill_fw', 'lbl_skill_cloud', 'lbl_skill_tools', 'lbl_tech_env',
-                    'lbl_pr_title'
-                ];
-                for (var k = 0; k < uiKeys.length; k++) {
-                    var uk = uiKeys[k];
-                    var uEls = document.querySelectorAll('[data-t="' + uk + '"]');
-                    for (var m = 0; m < uEls.length; m++) {
-                        if (data[uk]) {
-                            var el = uEls[m];
-                            if (el.tagName === 'TITLE') {
-                                document.title = data[uk];
-                            } else {
-                                el.textContent = data[uk];
-                            }
+        function fillAllForms() {
+            var data = jsonData[currentLang] || {};
+            var fields = document.querySelectorAll('[data-field]:not([data-sindex]):not([data-cindex]):not([data-pindex])');
+            for (var i = 0; i < fields.length; i++) {
+                var field = fields[i];
+                var key = field.getAttribute('data-field');
+                field.value = data[key] || '';
+            }
+        }
+
+        function updateLabels() {
+            var data = jsonData[currentLang] || {};
+            var uiKeys = [
+                'ui_title', 'tab_basic', 'tab_strengths', 'tab_education', 'tab_company', 
+                'tab_projects', 'tab_skills', 'tab_pr', 'btn_save', 'btn_preview',
+                'lbl_name', 'lbl_title', 'lbl_summary', 'lbl_summary_title', 'lbl_summary_text', 'lbl_email',
+                'lbl_strengths_title', 'lbl_edu_title', 'lbl_period', 'lbl_school_label', 'lbl_school',
+                'lbl_company_title', 'lbl_company_name', 'lbl_proj_title', 'lbl_skill_title',
+                'lbl_skill_lang', 'lbl_skill_os', 'lbl_skill_db', 'lbl_skill_fw', 'lbl_skill_cloud', 'lbl_skill_tools', 'lbl_tech_env',
+                'lbl_pr_title', 'lbl_major'
+            ];
+            for (var k = 0; k < uiKeys.length; k++) {
+                var uk = uiKeys[k];
+                var uEls = document.querySelectorAll('[data-t="' + uk + '"]');
+                for (var m = 0; m < uEls.length; m++) {
+                    if (data[uk]) {
+                        var el = uEls[m];
+                        if (el.tagName === 'TITLE') {
+                            document.title = data[uk];
+                        } else {
+                            el.textContent = data[uk];
                         }
                     }
                 }
             }
+        }
 
-            function reloadData() {
-                fetch(API_URL).then(function(r) { return r.json(); }).then(function(d) {
-                    jsonData = d;
-                    fillAllForms();
-                    updateLabels();
-                    console.log('Reloaded, currentLang=', currentLang, 'ui_title=', jsonData[currentLang] && jsonData[currentLang].ui_title);
-                });
-            }
+        function showStatus(msg, type) {
+            var statusEl = document.getElementById('status');
+            statusEl.textContent = msg;
+            statusEl.className = 'status ' + type;
+        }
 
-            function showStatus(msg, type) {
-                var statusEl = document.getElementById('status');
-                statusEl.textContent = msg;
-                statusEl.className = 'status ' + type;
-            }
-
-            function collectData() {
-                var data = {};
-                var fields = document.querySelectorAll('[data-field]');
-                for (var i = 0; i < fields.length; i++) {
-                    var field = fields[i];
-                    if (field.value) {
-                        data[field.getAttribute('data-field')] = field.value;
-                    }
+        function collectData() {
+            var data = {};
+            var fields = document.querySelectorAll('[data-field]');
+            for (var i = 0; i < fields.length; i++) {
+                var field = fields[i];
+                if (field.value) {
+                    data[field.getAttribute('data-field')] = field.value;
                 }
-                return data;
             }
+            return data;
+        }
 
-            var langBtns = document.querySelectorAll('.lang-btn');
-            for (var i = 0; i < langBtns.length; i++) {
-                langBtns[i].addEventListener('click', function() {
-                    document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
-                    this.classList.add('active');
-                    currentLang = this.getAttribute('data-lang');
-                    console.log('Language changed to:', currentLang);
-                    var newData = jsonData[currentLang] || {};
-                    console.log('  ui_title in data:', newData.ui_title);
-                    console.log('  elements found:', document.querySelectorAll('[data-t="ui_title"]').length);
-                    fillAllForms();
-                    updateLabels();
-                });
-            }
-
-            var tabBtns = document.querySelectorAll('.tab-btn');
-            for (var i = 0; i < tabBtns.length; i++) {
-                tabBtns[i].addEventListener('click', function() {
-                    for (var j = 0; j < tabBtns.length; j++) {
-                        tabBtns[j].classList.remove('active');
-                    }
-                    var sections = document.querySelectorAll('.editor-section');
-                    for (var j = 0; j < sections.length; j++) {
-                        sections[j].classList.remove('active');
-                    }
-                    this.classList.add('active');
-                    var tabName = this.getAttribute('data-tab');
-                    document.querySelector('[data-section="' + tabName + '"]').classList.add('active');
-                });
-            }
-
-            document.getElementById('saveBtn').addEventListener('click', async function() {
-                var btn = document.getElementById('saveBtn');
-                btn.disabled = true;
-
-                try {
-                    var formData = collectData();
-                    jsonData[currentLang] = Object.assign({}, jsonData[currentLang], formData);
-
-                    var res = await fetch(API_URL, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(jsonData)
-                    });
-
-                    if (res.ok) {
-                        showStatus('保存成功', 'success');
-                    } else {
-                        throw new Error('保存失败');
-                    }
-                } catch (err) {
-                    showStatus('保存失败: ' + err.message, 'error');
-                } finally {
-                    btn.disabled = false;
-                }
+        var langBtns = document.querySelectorAll('.lang-btn');
+        for (var i = 0; i < langBtns.length; i++) {
+            langBtns[i].addEventListener('click', function() {
+                document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+                this.classList.add('active');
+                currentLang = this.getAttribute('data-lang');
+                fillAllForms();
+                renderDynamicSections();
+                updateLabels();
             });
+        }
 
-            document.getElementById('previewBtn').addEventListener('click', function() {
-                window.open('index.html?lang=' + currentLang, '_blank');
+        var tabBtns = document.querySelectorAll('.tab-btn');
+        for (var i = 0; i < tabBtns.length; i++) {
+            tabBtns[i].addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(function(t) { t.classList.remove('active'); });
+                document.querySelectorAll('.editor-section').forEach(function(s) { s.classList.remove('active'); });
+                this.classList.add('active');
+                document.querySelector('[data-section="' + this.getAttribute('data-tab') + '"]').classList.add('active');
             });
+        }
 
-            loadData();
-        })();
+        document.getElementById('saveBtn').addEventListener('click', async function() {
+            var btn = document.getElementById('saveBtn');
+            btn.disabled = true;
+            try {
+                var formData = collectData();
+                jsonData[currentLang] = Object.assign({}, jsonData[currentLang], formData);
+                var res = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(jsonData)
+                });
+                if (res.ok) showStatus('Saved', 'success');
+                else throw new Error('Save failed');
+            } catch (err) {
+                showStatus('Error: ' + err.message, 'error');
+            } finally {
+                btn.disabled = false;
+            }
+        });
+
+        document.getElementById('previewBtn').addEventListener('click', function() {
+            window.open('index.html?lang=' + currentLang, '_blank');
+        });
+
+        // 添加按钮事件
+        document.getElementById('add-strength').addEventListener('click', function() {
+            var container = document.getElementById('strengths-container');
+            var count = container.querySelectorAll('.section-header').length;
+            if (count < 4) {
+                container.innerHTML += strengthTemplate(count, null);
+            }
+        });
+
+        document.getElementById('add-company').addEventListener('click', function() {
+            var container = document.getElementById('company-container');
+            var count = container.querySelectorAll('.section-header').length;
+            if (count < 5) {
+                container.innerHTML += companyTemplate(count, null);
+            }
+        });
+
+        document.getElementById('add-project').addEventListener('click', function() {
+            var container = document.getElementById('projects-container');
+            var count = container.querySelectorAll('.section-header').length;
+            if (count < 10) {
+                container.innerHTML += projectTemplate(count, null);
+            }
+        });
+
+        loadData();
+    })();
     </script>
 </body>
 </html>
