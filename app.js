@@ -11,7 +11,7 @@ function detectLang() {
     if (url.get('lang') && T[url.get('lang')]) return url.get('lang');
     const saved = localStorage.getItem('prefLang');
     if (saved && T[saved]) return saved;
-    return 'ja';
+    return 'en';
 }
 
 function setLang(lang) {
